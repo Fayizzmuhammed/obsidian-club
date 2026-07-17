@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Obsidian Club — The Obsidian Method</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -252,7 +252,11 @@ section{padding:100px 60px;position:relative;z-index:1}
 #faq{background:var(--bg)}
 .faq-list{max-width:720px;margin:72px auto 0}
 .faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;background:none;border:none;color:var(--white);font-family:var(--font);font-size:15px;font-weight:500;padding:26px 0;text-align:left;cursor:none;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:color 0.3s ease;letter-spacing:-0.01em}
+.faq-q{width:100%;background:none;border:none;color:var(--white);font-family:var(--font);font-size:15px;font-weight:500;padding:26px 0;text-align:left;cursor:none;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:color 0.3s ease;letter-spacing:-0.01em;position:relative}
+.faq-q-text{position:relative;display:inline}
+.faq-q-text::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--red);transition:width 0.35s cubic-bezier(0.16,1,0.3,1)}
+.faq-item.open .faq-q-text::after{width:100%}
+.faq-q:hover .faq-q-text::after{width:100%}
 .faq-q:hover{color:var(--red)}
 .faq-icon{width:22px;height:22px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:var(--muted2);transition:all 0.3s ease}
 .faq-item.open .faq-icon{border-color:var(--red);color:var(--red);transform:rotate(45deg)}
@@ -1660,9 +1664,1045 @@ body::before {
   .pls-bottom{flex-direction:column;align-items:flex-start}
   .pls-h{font-size:clamp(30px,9vw,48px)!important}
 }
+
+/* ============================================
+   FACELESS BUSINESS MODEL — BLUEPRINT SECTION
+   ============================================ */
+#faceless-blueprint{
+  padding:130px 60px;
+  background:var(--bg2);
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+.fbp-container{
+  max-width:1000px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.fbp-header{text-align:center;margin-bottom:64px}
+
+.fbp-canvas-wrap{
+  position:relative;
+  max-width:900px;
+  margin:0 auto 56px;
+}
+#fbp-canvas{
+  width:100%;
+  height:460px;
+  display:block;
+}
+
+/* Node labels overlay */
+.fbp-labels{position:absolute;inset:0;pointer-events:none}
+.fbp-node-label{
+  position:absolute;
+  font-family:var(--font);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  color:rgba(255,255,255,0);
+  text-transform:uppercase;
+  transition:color 1s ease;
+  text-align:center;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+}
+.fbp-node-label.lit{color:rgba(255,255,255,0.55)}
+.fbp-node-label .sub{display:block;font-size:8px;color:rgba(232,0,13,0.7);margin-top:2px;font-weight:600}
+
+/* Bottom grid of principles */
+.fbp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+}
+.fbp-item{
+  background:var(--card);
+  padding:28px 24px;
+  transition:background 0.3s ease;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.6s ease, transform 0.6s ease, background 0.3s ease;
+}
+.fbp-item.fbp-visible{opacity:1;transform:translateY(0)}
+.fbp-item:hover{background:rgba(232,0,13,0.04)}
+.fbp-item-num{
+  font-family:var(--font);
+  font-size:10px;
+  font-weight:700;
+  color:rgba(232,0,13,0.5);
+  letter-spacing:0.16em;
+  margin-bottom:10px;
+}
+.fbp-item-title{
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:6px;
+}
+.fbp-item-text{font-size:11px;color:#444;line-height:1.65}
+
+@media(max-width:768px){
+  #faceless-blueprint{padding:64px 20px!important}
+  #fbp-canvas{height:340px!important}
+  .fbp-grid{grid-template-columns:1fr!important}
+  .fbp-node-label{font-size:8px!important}
+}
+
+/* ============================================
+   LIVE ANIMATED PLATFORMS SECTION
+   ============================================ */
+#live-platforms{
+  padding:130px 60px;
+  background:var(--bg);
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+}
+#lp-bg-canvas{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.5;
+}
+.lp-container{
+  max-width:1080px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.lp-header{text-align:center;margin-bottom:72px}
+
+.lp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.lp-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:16px;
+  padding:0;
+  overflow:hidden;
+  position:relative;
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+  opacity:0;
+  transform:translateY(30px);
+}
+.lp-card.lp-visible{opacity:1;transform:translateY(0)}
+.lp-card:nth-child(1){transition-delay:0s, 0s}
+.lp-card:nth-child(2){transition-delay:0.15s, 0.15s}
+.lp-card:nth-child(3){transition-delay:0.3s, 0.3s}
+
+.lp-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 40px 100px rgba(0,0,0,0.7);
+}
+.lp-card.pin:hover{border-color:rgba(230,0,35,0.3)}
+.lp-card.fb:hover{border-color:rgba(24,119,242,0.3)}
+.lp-card.yt:hover{border-color:rgba(232,0,13,0.3)}
+
+/* Live canvas per card */
+.lp-canvas-wrap{
+  width:100%;
+  height:200px;
+  position:relative;
+  background:radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 70%);
+}
+.lp-card canvas{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.lp-body{padding:28px 26px 32px}
+.lp-title{
+  font-family:var(--font);
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:-0.01em;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.lp-dot{width:6px;height:6px;border-radius:50%;animation:tagpulse 2s infinite}
+.pin .lp-dot{background:#E60023}
+.fb .lp-dot{background:#1877F2}
+.yt .lp-dot{background:var(--red)}
+
+.lp-desc{font-size:12.5px;color:var(--muted);line-height:1.75;margin-bottom:18px}
+
+.lp-stats{
+  display:flex;
+  gap:16px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.lp-stat-num{
+  font-family:var(--font);
+  font-size:16px;
+  font-weight:800;
+  display:block;
+  margin-bottom:2px;
+}
+.pin .lp-stat-num{color:#E60023}
+.fb .lp-stat-num{color:#1877F2}
+.yt .lp-stat-num{color:var(--red)}
+.lp-stat-label{font-size:8px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase}
+
+/* Top edge glow line */
+.lp-edge{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.pin .lp-edge{background:#E60023}
+.fb .lp-edge{background:#1877F2}
+.yt .lp-edge{background:var(--red)}
+.lp-card:hover .lp-edge{transform:scaleX(1)}
+
+@media(max-width:900px){
+  #live-platforms{padding:72px 20px!important}
+  .lp-grid{grid-template-columns:1fr!important}
+  .lp-canvas-wrap{height:160px}
+}
+
+/* LIVE NOTIFICATION TOASTS */
+#notif-container{
+  position:fixed;
+  top:90px;
+  right:24px;
+  z-index:400;
+  pointer-events:none;
+}
+@media(max-width:768px){
+  #notif-container{top:76px;right:12px;left:12px}
+}
+.notif-toast{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:rgba(17,17,17,0.95);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  padding:14px 20px 14px 14px;
+  max-width:320px;
+  margin-left:auto;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  opacity:0;
+  transform:translateY(-16px) scale(0.95);
+  transition:opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  position:relative;
+  overflow:hidden;
+}
+.notif-toast::before{
+  content:'';
+  position:absolute;top:0;left:0;bottom:0;width:2px;
+  background:var(--red);
+}
+.notif-toast.notif-show{opacity:1;transform:translateY(0) scale(1)}
+.notif-toast.notif-hide{opacity:0;transform:translateY(-16px) scale(0.95)}
+
+.notif-icon{
+  width:40px;height:40px;
+  border-radius:50%;
+  background:rgba(232,0,13,0.12);
+  border:1.5px solid rgba(232,0,13,0.3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.notif-icon svg{width:18px;height:18px}
+.notif-text{}
+.notif-title{
+  font-family:var(--font);
+  font-size:12.5px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:2px;
+  line-height:1.3;
+}
+.notif-title strong{color:var(--red)}
+.notif-sub{
+  font-size:10.5px;
+  color:var(--muted);
+}
+
+/* PROFIT CALCULATOR */
+#profit-calc{
+  padding:120px 60px;
+  background:var(--bg2);
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+}
+.calc-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(232,0,13,0.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.calc-container{
+  max-width:640px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.calc-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:20px;
+  padding:40px 36px;
+  backdrop-filter:blur(20px);
+}
+.calc-title{
+  font-family:var(--font);
+  font-size:clamp(24px,3vw,32px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  text-align:center;
+  margin-bottom:36px;
+  color:#fff;
+}
+.calc-title em{font-style:normal;color:var(--red)}
+
+.calc-block{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:16px;
+}
+.calc-label{
+  font-size:14px;
+  color:#ccc;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.calc-badge{
+  display:inline-block;
+  background:rgba(232,0,13,0.12);
+  border:1px solid rgba(232,0,13,0.3);
+  color:var(--red);
+  font-family:var(--font);
+  font-weight:800;
+  font-size:14px;
+  padding:4px 14px;
+  border-radius:20px;
+}
+
+.calc-slider-wrap{position:relative;padding:10px 0}
+.calc-slider{
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  height:4px;
+  border-radius:2px;
+  background:rgba(255,255,255,0.08);
+  outline:none;
+  cursor:pointer;
+}
+.calc-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--red);
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 0 16px rgba(232,0,13,0.5);
+}
+.calc-slider::-moz-range-thumb{
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--red);
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 0 16px rgba(232,0,13,0.5);
+}
+.calc-scale{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:10px;
+  color:var(--muted);
+}
+
+.calc-result-block{
+  background:rgba(232,0,13,0.04);
+  border:1px solid rgba(232,0,13,0.15);
+  border-radius:14px;
+  padding:28px 24px;
+  text-align:center;
+}
+.calc-result-label{
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:12px;
+}
+.calc-result-value{
+  display:inline-block;
+  background:rgba(20,20,20,0.8);
+  border:1px solid rgba(232,0,13,0.3);
+  border-radius:10px;
+  padding:10px 24px;
+  font-family:var(--font);
+  font-size:30px;
+  font-weight:800;
+  color:var(--red);
+  margin-bottom:12px;
+}
+.calc-note{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:20px;
+}
+.calc-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  justify-content:center;
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.04em;
+  color:#fff;
+  background:var(--red);
+  padding:16px;
+  border-radius:10px;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  box-shadow:0 0 0 rgba(232,0,13,0);
+}
+.calc-cta:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 40px rgba(232,0,13,0.4);
+}
+
+@media(max-width:768px){
+  #profit-calc{padding:72px 20px!important}
+  .calc-card{padding:28px 22px}
+}
+
+/* FOUNDER CARD */
+#founder-section{
+  padding:100px 60px;
+  background:var(--bg);
+  position:relative;
+  z-index:1;
+}
+.founder-container{max-width:640px;margin:0 auto}
+.founder-card{
+  background:linear-gradient(145deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 50%, rgba(139,92,246,0.03) 100%);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:22px;
+  padding:38px 34px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(139,92,246,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.founder-card:hover{
+  border-color:rgba(139,92,246,0.22);
+  box-shadow:
+    0 50px 120px rgba(0,0,0,0.75),
+    0 0 60px rgba(139,92,246,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+}
+.founder-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-15%;
+  width:70%;height:120%;
+  background:radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+  pointer-events:none;
+  filter:blur(50px);
+  animation:founderGlow 6s ease-in-out infinite;
+}
+@keyframes founderGlow{
+  0%,100%{opacity:0.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.15)}
+}
+.founder-card::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+.founder-sheen{
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  pointer-events:none;
+  animation:founderSheen 5s ease-in-out infinite;
+}
+@keyframes founderSheen{
+  0%{left:-100%}
+  40%{left:150%}
+  100%{left:150%}
+}
+.founder-top{
+  display:flex;
+  align-items:flex-start;
+  gap:22px;
+  margin-bottom:24px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  z-index:1;
+}
+.founder-photo{margin-top:-6px}
+.founder-photo{
+  width:78px;height:78px;
+  border-radius:16px;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,0.15);
+  flex-shrink:0;
+  background:var(--card);
+  box-shadow:
+    0 8px 24px rgba(139,92,246,0.2),
+    0 0 0 4px rgba(139,92,246,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  position:relative;
+  z-index:2;
+}
+.founder-photo-placeholder{
+  width:76px;height:76px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#1a1a1a,#0d0d0d);
+  border:1px solid rgba(232,0,13,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);
+  font-size:26px;
+  font-weight:800;
+  color:var(--red);
+  flex-shrink:0;
+}
+.founder-name{
+  font-family:var(--font);
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.01em;
+  margin-bottom:4px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+  z-index:1;
+}
+.founder-verified{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;height:20px;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 4px rgba(59,130,246,0.5));
+}
+.founder-verified svg{width:20px;height:20px}
+.founder-role{
+  font-size:13px;
+  color:#a78bfa;
+  font-weight:600;
+}
+.founder-bio{
+  font-size:13.5px;
+  color:#9a9aa8;
+  line-height:1.85;
+  position:relative;
+  z-index:1;
+}
+
+@media(max-width:768px){
+  #founder-section{padding:72px 20px!important}
+  .founder-top{flex-direction:column;text-align:center}
+}
+
+/* PROFIT CALCULATOR */
+#profit-calc{
+  padding:120px 60px;
+  background:var(--bg2);
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+}
+.calc-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;
+  background:radial-gradient(ellipse,rgba(232,0,13,0.06) 0%,transparent 65%);
+  pointer-events:none;
+}
+.calc-container{
+  max-width:640px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+.calc-card{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:20px;
+  padding:40px 36px;
+  backdrop-filter:blur(20px);
+}
+.calc-title{
+  font-family:var(--font);
+  font-size:clamp(24px,3vw,32px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  text-align:center;
+  margin-bottom:36px;
+  color:#fff;
+}
+.calc-title em{font-style:normal;color:var(--red)}
+
+.calc-block{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+  border-radius:14px;
+  padding:24px;
+  margin-bottom:16px;
+}
+.calc-label{
+  font-size:14px;
+  color:#ccc;
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.calc-badge{
+  display:inline-block;
+  background:rgba(232,0,13,0.12);
+  border:1px solid rgba(232,0,13,0.3);
+  color:var(--red);
+  font-family:var(--font);
+  font-weight:800;
+  font-size:14px;
+  padding:4px 14px;
+  border-radius:20px;
+}
+.calc-slider-wrap{position:relative;padding:10px 0}
+.calc-slider{
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  height:4px;
+  border-radius:2px;
+  background:rgba(255,255,255,0.08);
+  outline:none;
+  cursor:pointer;
+}
+.calc-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  appearance:none;
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--red);
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 0 16px rgba(232,0,13,0.5);
+}
+.calc-slider::-moz-range-thumb{
+  width:20px;height:20px;
+  border-radius:50%;
+  background:var(--red);
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 0 16px rgba(232,0,13,0.5);
+}
+.calc-scale{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:10px;
+  color:var(--muted);
+}
+.calc-result-block{
+  background:rgba(232,0,13,0.04);
+  border:1px solid rgba(232,0,13,0.15);
+  border-radius:14px;
+  padding:28px 24px;
+  text-align:center;
+}
+.calc-result-label{
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:12px;
+}
+.calc-result-value{
+  display:inline-block;
+  background:rgba(20,20,20,0.8);
+  border:1px solid rgba(232,0,13,0.3);
+  border-radius:10px;
+  padding:10px 24px;
+  font-family:var(--font);
+  font-size:30px;
+  font-weight:800;
+  color:var(--red);
+  margin-bottom:12px;
+}
+.calc-note{
+  font-size:11px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:20px;
+}
+.calc-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  justify-content:center;
+  font-family:var(--font);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.04em;
+  color:#fff;
+  background:var(--red);
+  padding:16px;
+  border-radius:10px;
+  text-decoration:none;
+  transition:all 0.3s ease;
+  box-shadow:0 0 0 rgba(232,0,13,0);
+}
+.calc-cta:hover{
+  transform:scale(1.02);
+  box-shadow:0 0 40px rgba(232,0,13,0.4);
+}
+@media(max-width:768px){
+  #profit-calc{padding:72px 20px!important}
+  .calc-card{padding:28px 22px}
+}
+
+/* FOUNDER CARD */
+#founder-section{
+  padding:100px 60px;
+  background:var(--bg);
+  position:relative;
+  z-index:1;
+}
+.founder-container{max-width:640px;margin:0 auto}
+.founder-card{
+  background:linear-gradient(145deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 50%, rgba(139,92,246,0.03) 100%);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:22px;
+  padding:38px 34px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(139,92,246,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.founder-card:hover{
+  border-color:rgba(139,92,246,0.22);
+  box-shadow:
+    0 50px 120px rgba(0,0,0,0.75),
+    0 0 60px rgba(139,92,246,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+}
+.founder-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-15%;
+  width:70%;height:120%;
+  background:radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+  pointer-events:none;
+  filter:blur(50px);
+  animation:founderGlow 6s ease-in-out infinite;
+}
+@keyframes founderGlow{
+  0%,100%{opacity:0.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.15)}
+}
+.founder-card::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+.founder-sheen{
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  pointer-events:none;
+  animation:founderSheen 5s ease-in-out infinite;
+}
+@keyframes founderSheen{
+  0%{left:-100%}
+  40%{left:150%}
+  100%{left:150%}
+}
+.founder-top{
+  display:flex;
+  align-items:flex-start;
+  gap:22px;
+  margin-bottom:24px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  z-index:1;
+}
+.founder-photo{margin-top:-6px}
+.founder-photo{
+  width:78px;height:78px;
+  border-radius:16px;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,0.15);
+  flex-shrink:0;
+  background:var(--card);
+  box-shadow:
+    0 8px 24px rgba(139,92,246,0.2),
+    0 0 0 4px rgba(139,92,246,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  position:relative;
+  z-index:2;
+}
+.founder-photo-placeholder{
+  width:76px;height:76px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#1a1a1a,#0d0d0d);
+  border:1px solid rgba(232,0,13,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);
+  font-size:26px;
+  font-weight:800;
+  color:var(--red);
+  flex-shrink:0;
+}
+.founder-name{
+  font-family:var(--font);
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.01em;
+  margin-bottom:4px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+  z-index:1;
+}
+.founder-verified{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;height:20px;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 4px rgba(59,130,246,0.5));
+}
+.founder-verified svg{width:20px;height:20px}
+.founder-role{
+  font-size:13px;
+  color:#a78bfa;
+  font-weight:600;
+}
+.founder-bio{
+  font-size:13.5px;
+  color:#9a9aa8;
+  line-height:1.85;
+  position:relative;
+  z-index:1;
+}
+@media(max-width:768px){
+  #founder-section{padding:72px 20px!important}
+  .founder-top{flex-direction:column;text-align:center}
+}
+
+/* VERIFIED BADGE */
+.verified-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:16px;height:16px;
+  background:#3B82F6;
+  border-radius:50%;
+  flex-shrink:0;
+  position:relative;
+  box-shadow:0 0 8px rgba(59,130,246,0.4);
+}
+.verified-badge svg{width:9px;height:9px}
+.nav-logo{position:relative}
+.nav-brand-text{
+  font-family:var(--font);
+  font-size:15px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.01em;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* FOUNDER CARD */
+#founder-section{
+  padding:100px 60px;
+  background:var(--bg);
+  position:relative;
+  z-index:1;
+}
+.founder-container{max-width:640px;margin:0 auto}
+.founder-card{
+  background:linear-gradient(145deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 50%, rgba(139,92,246,0.03) 100%);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:22px;
+  padding:38px 34px;
+  position:relative;
+  overflow:hidden;
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(139,92,246,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.founder-card:hover{
+  border-color:rgba(139,92,246,0.22);
+  box-shadow:
+    0 50px 120px rgba(0,0,0,0.75),
+    0 0 60px rgba(139,92,246,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.3);
+}
+.founder-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-15%;
+  width:70%;height:120%;
+  background:radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%);
+  pointer-events:none;
+  filter:blur(50px);
+  animation:founderGlow 6s ease-in-out infinite;
+}
+@keyframes founderGlow{
+  0%,100%{opacity:0.6;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.15)}
+}
+.founder-card::after{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+.founder-sheen{
+  position:absolute;
+  top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+  pointer-events:none;
+  animation:founderSheen 5s ease-in-out infinite;
+}
+@keyframes founderSheen{
+  0%{left:-100%}
+  40%{left:150%}
+  100%{left:150%}
+}
+.founder-top{
+  display:flex;
+  align-items:flex-start;
+  gap:22px;
+  margin-bottom:24px;
+  padding-bottom:22px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  z-index:1;
+}
+.founder-photo{
+  width:76px;height:76px;
+  border-radius:14px;
+  object-fit:cover;
+  border:1px solid rgba(232,0,13,0.2);
+  flex-shrink:0;
+  background:var(--card);
+  margin-top:-6px;
+}
+.founder-name{
+  font-family:var(--font);
+  font-size:22px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.01em;
+  margin-bottom:4px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+  z-index:1;
+}
+.founder-verified{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:20px;height:20px;
+  flex-shrink:0;
+  filter:drop-shadow(0 0 4px rgba(59,130,246,0.5));
+}
+.founder-verified svg{width:20px;height:20px}
+.founder-role{
+  font-size:13px;
+  color:#a78bfa;
+  font-weight:600;
+}
+.founder-bio{
+  font-size:13.5px;
+  color:#9a9aa8;
+  line-height:1.85;
+  position:relative;
+  z-index:1;
+}
+@media(max-width:768px){
+  #founder-section{padding:72px 20px!important}
+  .founder-top{flex-direction:column;text-align:center}
+  .founder-photo{margin:0 auto}
+}
 </style>
 </head>
 <body>
+
+<!-- LIVE NOTIFICATIONS -->
+<div id="notif-container"></div>
+
 
 <!-- OVERLAYS -->
 <div id="progress"></div>
@@ -1689,7 +2729,10 @@ body::before {
 
 
 <nav id="nav">
-  <a href="#" class="nav-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAB4AHgDASIAAhEBAxEB/8QAGgABAQEAAwEAAAAAAAAAAAAAAAYHAgMEBf/EADYQAAEDAgMDBw0AAwAAAAAAAAABAgMEBQYHERIhMQgTNTdxc7IUF0FRUlVhdHWUsbPRFYOh/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJPMW+3zDlpjuNkpaaqY2RGTxSxvc5Edwc3ZVPTuXtKwl8yr3XYewjVXK2PYypjkja1Xs2k0c9EXd2KBmnnfxd7hpftp/6PO/i/wBw0v20/wDTzWrMDMe8RySWqmSsZG7Ze6ChRyNXjou886Zn48W4f45EiWt5zmvJ/Ik29v2dNeIH0fO9i73DS/bT/wBNKy8vV6xDZXXK90tNSpJIrYIoo3tdstXRXO2lXivDs+Jll1zBzGs7I33anbRtlVUYs9CjdpU4om81jLu8Vl+wfQXO5OY6pm29tWM2U3PcibuxEApAAAAAAAAAAAAAAhc6ur6u72H9jS6IXOrq+ru9h/YgE/yeuhrx80zwISVP16L9Zd+FK3k9dDXj5pngQkoOvRfrLvwoFTyhujrJ38vgQq8nuru09kv7HEpyhujrH38vgQq8nuru0/7f2OAswAAAAAAAAAAAAAic5IJJsvblzbdebdFI7T2UkbqpbHXUQRVMElPURtkilarHscmqOaqaKigZTyeuhrx82zwISMHXov1l34U17BGEGYRkusNLLt0VVO2WBrl1dGmzorV9ei8F9RkUHXov1l34UCp5Q3R9j7+XwIV+UkL4cvbO2RqtVzHvRF9TnuVP+Kh240wfFi2qtDayTZoaOV8s8aKqOl1RERqL6EX0r6u0p4Yo4ImRQsayONqNYxqaI1E3IiIBzAAAAAAAAAAAAAAAAIJmW1MzMFcT+WPWJXrUJT6b+eXcq7Xs+nTjr8C9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//9k=" alt="Obsidian Club"/></a>
+  <a href="#" class="nav-logo"><span class="nav-brand-text">OBSIDIAN CLUB<span class="verified-badge"><svg viewBox="0 0 22 22" fill="none">
+<path d="M11 1L13.09 3.26L16.18 2.5L16.9 5.6L20 6.32L19.24 9.41L21.5 11.5L19.24 13.59L20 16.68L16.9 17.4L16.18 20.5L13.09 19.74L11 22L8.91 19.74L5.82 20.5L5.1 17.4L2 16.68L2.76 13.59L0.5 11.5L2.76 9.41L2 6.32L5.1 5.6L5.82 2.5L8.91 3.26L11 1Z" fill="#3B82F6"/>
+<path d="M7.5 11L9.8 13.3L14.5 8.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span></span></a>
   <div class="nav-links">
     <a href="#philosophy" class="nav-link">Philosophy</a>
     <a href="#platforms" class="nav-link">Method</a>
@@ -1711,6 +2754,34 @@ body::before {
     <div class="orb-ring"></div>
     <div class="orb-ring"></div>
     <canvas id="orb-canvas"></canvas>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<!-- FOUNDER SECTION -->
+<section id="founder-section">
+  <div class="founder-container">
+    <div class="reveal" style="text-align:center;margin-bottom:40px">
+      <span class="s-label">Behind The Method</span>
+      <h2 class="s-h2">Meet The Founder.</h2>
+    </div>
+    <div class="founder-card reveal"><div class="founder-sheen"></div>
+      <div class="founder-top">
+        <img class="founder-photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAEsASwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDp9T1O00yEx3LNHKQfLjMTM749FUZP8q4a91TVrqfeN0MQPG8gN+CLwPxP4VnTeJtRkiS1a4k8iJdkabjhRnOB+JzT9OvjNMoLZbPGa+Mw+AdNaq7PrK2O9o9NEN2R3N2z3ks9y8cg+S4YlFOARhOF79cVkfFr4fatpvhu08V3EVsbS+m2xSQPuUpg4z/dbjBFemeMotU1Pw/p11PoH2NbO38s3McBUTLnIZjjGea8l8eavqw0I2MdyrafuDPEwOVYHgjt3rsoU6sZxa0OWtUpuLT1Of8ABa+XfSAMQVsI0P8A32SP0NdMZpM4LcVxGiTa+RvslgliVAoWQrkKCeOx65q42ua6H2DSYXZc79rHgDrnnjqK76lNuVzhhO0TrY5Ock1Ld3Ej2EsZYkbGwPwrlJfExtX8u+0m9t3xyOD/ADxxUi+MNEZCrSzxnBGHhP8ATNR7FvoP2qXU523Yr4yt/adP1ArqvFFu11pBtAdpnKhSRnv2HeuK0WU3XiiycyeYz3KDcBjPOP5V6GC9u0+pLFJPNGTFbxrjIPdh7gdPds9qeMqunKKW9isJTVSMm9rjbPTspZm4nt1mt4/L+WIPLFgYOfQ8dM556VheONDluIreaG+t5njycTRGJsZyeTwR+Nel/DTR4byMyNEbeRyzCCU5ZMAnofpXR/EzwlBbRvPH5aoGKFQOFIVS31GWx+FfO/206WIt0Tt9/wCB7n9lxqUfNq55C2gaFcDd9ghwTgmIlefwNYXi/wANafZaes9qbhGd9m0vuB4z6e1dGHWyulRpGZHcInyAKAB0z1z6evPNV/G4J0qLk484dP8AdNfRYeu5tNM8LEUFC6aMX4WSbtWugDx9n/8AZhXsvg+7sbbWLWXUYGuLVZAZY1faWXuM9q8T+F2P7enRWxm2P6MteoQMVPBrory5atznoxvTPf8AxD4g+GV54dlih0WaOfyz5extrBscZOTn8q8F1BQZGKjjPFSm5bGCxqvK+48cmlVqKa2HTg47u5WIprjinyMiZLsq/wC8cUgIcZQhh7HP8q5WdCICtMIq2sTHopP4UeQe4xU8yK5WUjmk7VeFvGQMyPn0CcfzpXt4oxlmj/4Gcfzp86FyMzSecCnCGVjwh59eKnkuYIeVnTPpGN38qjF7I/8Aq7WaT0LAKKpNsXLHqNaym6sAPpzTfs0a/eLH9KaPtiIQsVvbrksdxLck5qtNcY5m1RR7R4/pmqSkw5oIvLHGOQoHuaZNcxRjDzxj2JzWU81gclmuZz+OP6VF9st05j0+JRj70kg/+v8Azq1TZPtV0L8moW2cJukP+wtILiZx+7s5CfVjgVnNqzg4EsEY9FQtVRtVnmfZFLdTN02wpz+nNVyJFKNWW0X9xuiK/cZxbxD15NV5QoO2fU1U9wpArIni1Nim7SL9iwyvnRvyM4zgj1BrX0/wn4lu7dJ1t7KzR+QJp1Vse68sPxFJyhHVstYWs91b1ZEG0tW5klmP0J/wp5v7SEZhsefVsD/GrY8Ba27Yk1a1jGOsYdvw6LToPhrcSHN9qwI9EjJ/man21LuX9Tkt5IzJdflXvaxD/e3f1qBvEMmeb0D2EXH8q7XSPh94dtbhXvYLy/iH3ozceVn8VHFZXjqDwfo2qw2lppd1Chtw5WTy5SCWb+IgE8AdqcatNu0VcFhVfdnNv4kvYF8290C+gXGSw5XHr0p8HjWwWZPMgvIVxkuyDj078/WtS6EQ0SOG6niDTQLFwc5O0A8fyqSwsZk002sCy7okG0YUjIHcY/HrWMsTQjuc8KVSfws73Sf2gdSGkf2Q3iTdD5XlHz4zu24xjJB7V5b471yzubIxWdxazCVsNscZA4I4/Cn2Mdhp9qLK8SKRlLHfLAOhOcdD6kDntWZ4ih8PPA0UMUUVznKSRR7cH0I7j/61dP1iErbs5px9k2noy/4MmR9JUKAXSR1J74JzXo/w98M6RrmqLpdzfJpovSVa4PRCR15715X4Qlt4rd7ax8yaXJlkeRTgJnAJxwo+veug0TxPZm3Mw86MhthcgBQfzzjBFcuJ967RtQrwjZyOq8deHYdC8RT2kd1FdNb5h86Jsq4BzkVzVxaWkykTWsEuf78an+YqW+1m3uLyKEXMcryDqHzz2Ax+PWnJDKSCY3wenB5qaUmlZvU0nOMpPlPP9Cto9P8AHunxlVVTMHCrwFJDY/pXfWdk+oywolwY2Hmn7hYAgbjkLySQvGK821eeSHxPBcx/6yJkI/BjXpmlXqabf3DGFZZIt0iL5hRjn5H5APQMOPfPajHQvUjJ7Nfk7s2wU7Qkl0f5neeBNNaHVISuqolwkzwvFIVRX+VRtGefmEoyDznPTGa9C8W6XNqGhQMkpMU0IYrOSzKyphyNq5IG0A456Z55rx3w94lmt7lHYWduFYNyJJJOAgGTuGT+7U578g8Gut17xytxpZ23OwlChjSyBQr82flYkY+ZgR3BHpXyuNwlJ1VZuzt+H9P8D6LC16ns7tK6v/X5HnWsaZZhrhwPMFhOsd1ErFyHV/mbI6J6HoTkfXE8bDydCCIc7LkID9Nw/pWrc6hYpFPBA92xu2PmYhSOMMxAwQACF6HA46elZPjGaP8A4RWdd28vfmVG2j7pdsc19Lg2uaKSPCxifK22cx8Llc+JZEUFibZ+Bz3WvUrgfY7dri7litoV6vLIFH61474R1xPDurPqTw+cfIkjVCcZY4x+HFZ3iPxJe6zdG5v7jef4IxwkY9FHb+Zr16uHlVq36Hk060adO3U73W/iBBEjR6VbmZ+gmmGE+oXqfxxXF6j4l1m8YtPqVwQf4UfYo+gXArAa5d0yq1AZZc85H1rqhRhBaI55VZS3ZoPOxJYktnqTzn86RLqaIkxSvH/uMV/lVHdKeeDSq5/iUfhWliLnT6T4x16wZQmpSyxj/lnOfMX9efyNdzoHjuPUnW2vGisZjwp25jf6Meh9j+deP5B6cVLDKUbawyp6isKmGpz3RtCvOGzPdri9iORJeTyY6hfl/wAKqfaYnbENi0x7FmLH9M1m/BPxPpK6onh3xHbmdbtglhdqqFkb/nm+7qD2PUHjoePdRZaGQEgupoYzwN1suD7fK/8ASvNqpUZctjtpv2qvc8mgtPEFwCLXTmiA7iHH6tUx0DxE8InunkhjPRsnB+hUYP516vd6dpNwsH2a4tYmgjCMTJNGZTknccjGecfgKsJa37Xv2jTrqa3tmcH7Lp9+u0DjIUFifXr3rL6w+iL9ku540nhwyOS0k85HUJFuJ/Ems/xVpc2m2NrMiTwPLIy7JCM4AHp0617vqCeIPNmlmRvs67miF5Zee7DPyqzbcDI6np7V5j8T5rq+utJhu7fTYZFaQlbSJkOOMbs8duwqoV3J7mtCgpVIq3VHO+C/Bx8Qac2p3l3OkZleIRpzypwTk100fgTRLKF5rpLiaKNCzFnIwByTgewrovhpe6dpfg3T7efSL29eaSeTdaSjIzKcblZcDjpzzjtXoc8OgwX72k7XsTRHbIVWKVQ2MkAhgTjp06iuarVm5PXT1sd7nyNxWnov8jzXTfDnhhLWHf4ZgchcrMsrK7A8gsGDDODjoOlb1np9pJIsdmuoW6uQuxY0YZPH8BX+Va+vyaVBCraRftcOzbQk9gyYHrndisKOfW3m8qHUba2JBYOsQQJjvuZuKwdSUtH/AF9xLb3bf9epfPh8ByI7+GVTypZZE3e4yuD+dIdCulYqkaTH/plKjn8gc/pWMt0LO6ki1rU7iV7YhwzQIYwduQVYAg8N1/KuoXTUWJPOE2dox5npjjqPSnN8i95CheT0ZjXGlywP5k1vPEcbfnVlGM+/H406K2Rh1B+nNbqkWUDyrPLEirklZGAUDrwD6VOXnk+ZwJeOBJEh7cZJGax54vqa8sl0OdNoeyk/hXjXxXgE3jKdCP8AUwxR49PlDf8As1fRzJbs7Ys42XJ2lWZD7cAkV85/EO5gn8dazJtKgXTIBnONoC9cD+7XThXebszfDxvLVGK2tR29wkWoWsBtNhQMud+enT69Me9M0nxbeafAslpta7gn8x5HYK4zgbCpyGwR1wepyMV6/D8F9IiuoJxruqyGEghZYYiGI6ZxiqS/BR7fUZb2z8VMHkYsfP04Myk9wwkzn3rteDj1jf8AI+XVeorWex5Rd65eXpd7tWihnBdVcD51JJQFh0IbPGB68VRjbS720ljQS3F7I6qMudpUD5iDg8jpj8e1et3PwSvXkt3XxPazGBshp7Els9eMHHWsGX4DeI1uDLFrOiTgKdodp057fwHpWkKLttYwqOc3d6s880a9XR9QIthJJFlFfBBLL02gAdcZI3YGAfWpPEmp+HGi87R2maV0Kyx3EZ/duTgt1xk9cjoeOa7Gb4GeL1siRd6ZNcb8LsviqhOpHzID1J4rGm+B/jlWEpsLeR+ciDUIiAe33iD9a0VCLnzvf8yLSOT/ALRawt4Iorq2llk+bcUG6Pn/APV/nr0HhzxXcRSoFErzbACJWG0gNk4yfT8M1Dd/B/4jxuwXQJZwpwDHcwncPb58j6e1bOnfC7xemlWss2jX0F6ryb4niBDAkBQWXJAxn1H0orU4KKbHHmWqOK17zhcG72EoT976sSOK9I1e11OG7OvTabcw2uVLSSRP5aORj5mIA2tnB+tZieEPEUFnK1/4Y1W3hmZvlitWkc4PUgD5RzwccivRLL4keKriTUv+Eu8P6vJA9rFbi0WxmMIVQVfchODvyCeD17AVjWcqiUbbHVhq3JN36nIWV1bmZiHlSJccEZZc9j6/XvXRf2npUlokU7yqEUf6vG9ic5BHtxj6muRvbzRYb4yabHdafaFyfsl7ZzlYuRwrld232bJGMZq3HdeHbgAHVvD1lI8gTfJJMGQf3irDGB/WvLq5b713E9unj1y2Uh4hu7+8tbXTlbfczhUVvvsOcHGPu5HJ7YNdh8XfA2k6D8J7q5tpEuJ7WW2JmMr5wXCthcAYJPeqejarp+hXxuvD2vaRqt75XlNcy38KFVIxtRWJwOx5yQMVwXxp8e+JtRh/4RO/vrY26OlxdJZsDHI+392CV4O0En6t7V34PCTjJW0R5+LxUZ3W55bM3nSnH3c/lUcioMYVeB1IpSccVFI5xXvHkANo5AI/GlLY68imFhjFIGoAdyPuH8KN/qMe9NB28jp3oyH6Yz/OgBxB+oPekHXBpA2KMgigC9YTSQurRsRKjB4W/uuOQfzFfcuj6de63plhdw2liwu7eO4bdZSxkbkDHBU4OMmvhK3fDqfQ19j/AAA8ZS6n8MoYXXM9tEbOaVTlsRfMh56HbsGRjoa8rNpKnTVSWyPQy+LqTcI7nYf8I9EZAHgtFAIBZLmRePXDKfyqNfDlvI0hghnmROA8UsTqfThtuM+hrLvvifJZ6pOZI0aaMgCJFkEW4qANyk8DBJ6jkZ9qzpvGep7pIpvOYhv9ZHdrsIAyDtKkHr1zXCqNVpPl3Ol1Ixbj1R0cmimzmwJb6F+cIbfOcdfuOf5V5j8WlePXNOEtxcTsluzAzrIrLyeMOAe1d2utGV5Fmsx8y5LFIzg9iWKqT1z2/CvMfiZdrNriS7o2jS0GCoAA6nGAzc/j+FVTi1qzqwLU8RFf1sd58NYP+KI0YbdJkkNtv2zeT5hySedxB71tX6tbW0ks+mWYgQE7klZV9slZCBUHhKOGTwvo9taXcdxKlnCCjTSYhwoPA2kBshgQRjHSmeJLeYaBql1JFZHY0SI6NG7SEnkH92pGB79we1c8oxbb6jnNuo0u5y95LBqk4jtJry2UA/cu2xkdevPp+dW7HTNcmtE0Sz1u9a3kl84JIyMN4U/MSw7D3xWHpdjczanFJIu2EBuNnL54H169c16DcaY0swkaa3aAEATeUp24w2AN/XHbFTS5eXWReJ5YztFHmfiG6Oo+K7tHl8spdCFuFBkJfb8gGOOOg6V6FDqmuRSZeSFVjPCxSSqCAfQmuZ06O4v7yyurnSrYLcXCGOYbCV5L87XODxnkDnrXZSwBmCnjOAc1riZP3YoypJatosw3muSKrz2LMGxjzIkOc9OWANWYpZmIjudNVGO1vlOzCnPP38ZOOmKvzzB4hFHHvWVCqjfHhh/Ey4bJwAeg7Vk/FeSW08FaxGZn+zw2brAo+6hZVXIOOfvKc59K9FYHCSt77v5/8Mee8bXTa5Fby/4cljZmiuJntJoFt9pIW5jdny2PlXGSB1JzwK+d7aCLWLm/1GVeZryRxn0Jz/Wuos9O8EQeD9Pu7ttDur82jyXS3WpOHEhUlQqK3LZ2jGO1c94XilTRYW2uxkLOcJnuR/SojSw8JWimj6PIl7aUniHppt/wT6SKgUxgKkb3qNhXYfJDcUhUUtIKYDSopCtPIpKAIyg70hRewFSE01vagBnTpSZfjDuMdMMaGNN5oGP3yf8APV/++jSFQ/3wH/3gD/OgUo5oEVp7HTGVnudNsJUUFm32sbcDk9Vr4a1y+Oo6veagVRBc3DzBEUKqhmJAAHAAGBgV9ueKpHh8LavLGSGSwuGXHqImxXwoThFHsK2pLczqMXcOfWoHJpzkKMZ5oSOZoXmWGQxIQruFJVSc4BPbODj6GtTMYTxSE4pvQ0lADw2KN1MzSZoAmLZ5pQahVsVIKAJUNe7fssa/BDc6r4anMivfJ59uwGRuVdrjGRztIP4V4MprtPhi+uaX4hsNd0iEF7Z2bc4BTaQVOQSMjkiuPH0KdehKnU2Z14GpUp14yp7n1E/ha8XUpr86hNHFcneoWCMZwNueQc/jWrHp11KsCPc3DRxKIyyAZYAf98g8eleQ/wDCwfFU0zNcPEkitlR5ixr3wFXaffvg1lar431zV7mIy3dzboiOgSOchf0x+tc/tqqhGPO7RWivsejDKp4mu3KNnJu76Nnv9xvKoBZqcIFz2OMc8V4l8XGxr01qibGht4093Owc9O+aqXWt6gtqVtr6+jEYHzC/Lc9DkZ/lWB4xv55NaXezGTagZnPJKhev5VhD4eRdD1MLl7w1dVJta329D1zRPCllBHDfJZRTmRQ+1i7JnABPDYOCD+Z9q0LzRobWzuJLiyghhMBd5WQlQg5YnOfT9BXkPgvxF4ps1/tmzvLS1VkxtlRmEnsBu6Drn2q/e+O/FeunVrfUr2C4jTS5n8yFSm1d0aADBwR+87jPPWrlGVt9ThWEqSmrLS6vqtLtf5nWprOhM7Y1WBkiRSpGAjtkH5eOSMD8RU2nXtldanapa3kVw4WeU7HLMm1GzxjuDxXnPhq4dbXETSeYygfJD5h5Yn8OgrZ0XUtRsfEE1zZfZn1HyfLjWeParsxUN8vHOM1EUkrRij0cTlUKUZy53or/ANafqdN4Ta207xJFNcyExW6vvkkjCvuI2rgDJIO6u/03WtL1K7UWV0lw4blIwc8c46Vzupawt1p0ZS3tWLOshk8raTjJxj04zz6Cs74WXOn6HqOr31zIrFYiSzrgDHHYcDg1lTSxFdOWiVvz1POxFGphqWiu3d/gjrvHPiePwzcWFjJJqf2idWkjeG42hEJ2MCWzwc9AO1cr8QPEFx4i8N3dn5WoGQlds0siOiqGUngAHooH4D0rzbxN47uPHOvR6hIqrBbg29uQoUugcsHI7E56fSuvWdVsCYlLzBERUyCxJ9B+Oa7Gnz6FqhRpYaNWcb382jzi/wBNurdHleJmiRvmkAwvb1/3hXpfgiCe38NWqrc+WGXdjiuS8Taj9p0SRSsyDzEQiQADJJPrntXWwRRx2NohmOBAuAJAMZ5x+ZNXUnOUlpqjG1OnhXyuylL8F0PbaY1P4xTDWx4400lOpM0DEPHWmk5pWOaQCgBCtMYGpaaRQBCQaO1PYU0igY0GlB5xQBS0ANnhS6gktpRmOVGjfPowwf0NfBmuWU2m6ndafOpWW1meFwfVGKn+Vfe4xivlT9p3wvPpHjqTXIoW+w6viYOB8onAxIv14Df8CPpWtJ62Mqi0uc54R0Rb/QNS0q4szFqWo2yXmmyuB+8SNm4X0yQc+2D0FX/hiV03wd4rvL2FJIdqwyW8q5WQqrnaw/3ivuDyMEU74d3f9taINPluFt9R0VvtGn3TfwIxwUb1TccEeje1dB4wsoLbwZrc6QtDNejz5owQQkmFDYPfOM//AK6JS1sEVpc84v8AwtPB4EsfEoCMk7MJAHO6P5sKSD1BweR0wM1zBNekXskmo/BK38oAiwmXzQOwEjL/AO1E/OvNq0i29yJKwZopKWqELg9aep4qPNKvWgCVck8da7m01i4stFj0+FjboygSEHBwP/r1y3hy1N1qAjCgkoxX8BWjcWcz6kkRk+V1yGHYDqPrXJiHGTUX01PQwXNC8l10Oz8A/wBv6xqKaRo8aapMp+0xCaVUwq8PyxAyMj+ldba/DPxtNegXmmwQW4LFmW7iZjnJ4w2OuB+PtVr9mLQZhr97qzRkQW9oY489S0jAZ/JTX0D5f+yc/SudKL6HbLHV6ErQlY8Gl+H3it4hG9hFsZl3BbuEEDjPRe364rB8QfD3xVcajutbW1MEcbKjvdqGY9u9fSkkLYJ2n8q54W0jLnyZMf7hqlFJ6Iz/ALQxEt5fl+h4N4jshptro+hX8lvbXcFoBPl9yKpP3gR1PDdKw7zUIZ9R1q4trWSOyazihjSJMyBTNGFwM4ydnfoPeum+Meg6/f8Ajgy2unah5MdrEiypayFTwSRkKRnmuAu9B8RAzLJp2pAYQAm2kUHG49do6Z/Wto0YuzujsjXqrD3s2+ltr7977o3rfVtDsY4oxcqGWGHc6mVi7MgYnCsAACcYq/bX9uLEajZKk1x9qYI29wdqBSGCk5zuPf0FcMmgaj5rbredEHdoWH9K6LwLDZWqXKa15253HlqYCwAA689znH4VdSNLl91K5wOtjf8Al7J2PR45ZIrnfeFGgYh3wGVlyB8pOccHNc74l1G4n0W902ELbi6kWKS5QdYerY9zgDHvWH4u8SW8OphNItEhtPKCyI8eN7c5PtwQK5a58R3ck6mVo8R4AGBjjpXBCm73QqmMgtDYhWGw0mQWUaqVk2oXjy/Lf3j3/pXWJBfP4dvLrzWkZ4pQHGEVgFYZznAOBXE22p/2jDHFcT7IzNvYoAWBx14+gr03wzNFFY2VrLLGI47QuAzDuFHf6muyjJQjd73NMXXVWNNU37vKl8zhJ0NxqMFwIbaNXZIdsAUD5cdQCecEda3Z7OfzN1o9oI2AYiTbu3EDdnKnvn8MVP40mhm1/S0tmjbbEzEKRgEn/wCxo/s6wkAeRp2YgZ4XH4V6eCqwnUnOTtseZnKnDDUIR/vN/N6H04DjikopM15gxDSYNBzRmgYYoxSiigBtNJp5phoAYTTTTiMmjAxQBGTR1pxHNAHvQAAVzXxP8KReMvBd7ojbRcsBLaSN/BMv3T9Dyp9mNdMtOB9aE7aiep8O+BPPsPGsGn3MTRm4d7C4iYcjflSp+jY/Kuq8KaneXGq3/grWmE8apJHAZD85A6oW75XkHrxS/tIWUWh/Fye80otbyzRw37FeNkzZyy/UqG+pNcDf69d3HiVdfQCG73pI208bwBkj2OOnvW7XNqZJ8uh6Z4S0a1sH1DT7a7XUNIu90V1as2J4Gxg8d+O/HIU15n4v8P3fh3VntJz5sBJNvcKCEmT1Hv6jseK1vHGtaZc6zDrHh+6uIbplxPtUpyOhz344P0rG13xDqutw20Wo3HmrbghMDGScZJA4zwOaIKW45NbGTRRSgE9K0IEpygk0oT1p2McCgDpPBkTpeQ3n8KOfxGMGui1Kzht9RW5KHyXPB9faq/heFIdBtpCvzMpb82NactzvtQjYJjbcPavIrVOeo/uPboU/Z0lf1PSfhj4kbQnZprfbaXRXzolHzIBwrD3GTke/rXpMnxA8GLfCyk8TafFcHGI5XKE56feAFeC6dfAnaD3q5rkOmXmjSvqsEc0EKFwWHzKf9k9Qc46VFOtyNRa0Kq4b2yc07M+iWmhntfNgkjmjdcq6MGU/Qjg1jvAR6j6GvnfwP471fwyhhs5la3kPzQONysemcdj7ivUvCvxV0e/Ah14Lp0x+7IsbPG3PoMkfrXoyptHkqaZ2LiVR8ssoHs5H9artLcDgXNwBnOPNb/GtXTDp+r232nTtStbqA/8ALSHLgfX0/GmT6ZtYbZlfPopH86gozTcXhPN1cH6yt/jUguLwjH2q4/7+H/GrDWmxuaBFjtQBWEl1gg3MxB6gsTTW3EYYq3+9Gp/mKtmMUhjFFkK5nPbxOTutrVj720Z/9lpjWVoxy+nae5/2rKI/+y1olMUmz2osPmZmLpOlZJ/sfS+ev+gxf/E1KNK0vH/IG0j/AMAIv/iau7aXiiw3Jvc7A80wmvJZviJ4if8A1cFhGPaJm/m1VJfHPid84u4Ez/dt1/rS5kKx7Lu96aSPWvEpPFfiaQc6tOv+4qj+QqtLrviGX7+sXx+kpH8qOZBY933d8H8qY88a/edV+pAr5/nutTmP72/u3/3p2P8AWqjwvJ99i3+8xNHMg5T6Cm1TT4smW/tI/wDenUf1qlN4o8OxZ8zW9PXH/Twp/lXgrQIvO1fyqGRQKOcfKe6y+N/CkZwdctD/ALpLfyFVZviF4SjH/IV8z/chkP8A7LXhzKPWoyq0+YVj2Wf4n+Gkz5f22X/dt8fzIqq/xW0UfdsNQf8A4Cg/9mryPCelPUL6Ci4j1KT4sWv/ACx0W5b/AH5lH8s1GfitMR8mhL/wK6/wWvNU256Cp0IxQ2Fjhvjdrs3iHxvNqM8CQN9nhjEaMWACr6n61wDA54rp/iA27xNdH0CD/wAcFc0euBXXD4UYS3IzkdaACelS7eOeaTHHFMQ0IB1p3SikoAUUc9qKmso/Nu4o8dWGfpSbsrjSu7HfQnytPt7VeqRqv5AVXnnEKNk81Gk+1S7HntWPfXJmn2+p5+lePTpuUj26tRRikjotEundgc9eak8YawZEj0qFvkQ75iO7dh+HX6/SsWC/FjCXQgykYX2PrVBN8snJJZjlmNdVHD3nzv5HJXxLVP2ceu5dsWwxnbkLwg9TVhpY0GZiS7fwr1qhJcgMsMC7iOAP61NaW8hclXzKfvSH+H2H+Nd555uabrl7pE63FrdyWk45HkuQ/wCJzzXpPhT4v6sDHDq1imoIOskY8uXH/oJ+hA+teW2lvFGMhRu/vNyT/hV+MxqDvLEdSd2APyxUuKY02j6V0fX9J12IPp1zukxueCRdkqD3U9vcZHvV0+9fMtjqgs7mOexmnjlibdGYuNp9Rn+mK9P8HfExbpksvEEeyY/cuI04f6qO/rj8qylTtsaKdz0kjNG0UkMkc0STQyLJG6hkdTkMD3Bp+KzKI9tIV4qQ0h60AQlaacZqYim7fpSGeVKq/wB0UhA9KUGmsw9a57mlhDTSBS5B9/pUckiKpLMFA6ljj+dO4CScGomOBVW51fTYmKyX9qrDsZRn8hWfdeJdGhjMjXoZR/cjZv6VVm+grpGhKxJqB+a5+68a6QgzEl5Nk8bYwv8AM1m3PjlB/qtNl/7aTAfyFWqcuxDnE61ulRk9hXCz+Ob0n91Y2qf7zM39RVQ+MNWZiWeBBjgJCOv45qvYyF7RHoLH8KQMR2rzK68Sa5IeNSlCnptCr/IVqaJrSJM899eXUsnljYGkJUepx60SpuKuEZKTsd8j4GWIA9zinNfWMalpb61jx/emX/GvL9Z1OTULoPg7E4UM26k0qzkvJ3JyoBG5tvQetNQ01BvWyHeNJo7jxHeSQyLJGzjaynIPyisYJgZNXtYjji1KZIs7BjbuPPQdapsPaupKyMHuM/Cmkc08jimnpTENxRS0UAFaOiR/vWmPRRgfU1QRC5CitCNvJhCg4UdTWVV+7ZG1Fe9zPoXLy6CRn5unWsxLgOxYZ6/iarXU5mfav3c8e9aFlbqgAIBfGT7UqdJRWo6lZyeg+JGJ3yfgOwqZ2KKI4xl27+lBZck/wL09zToVOdz/AHm5PsK2MCW2g8tQBy7dTWhbkKu1eg6+9VUYhCw6ngVLFwozQNF1ZcZLHGOp9KaGN0QckQjoP73uaq3DbtsHry30qdGyAijAFAFpZNo2xD/Cnjf1eRgQcgg85HTFQodq8dqUO3UEZ9fSgD0n4b+NJtPk+y30ryW2f3sZH3c/8tE9PcdP0r2RJEkjWWJ1eN1DIynIYHoRXyxbSSxyrNG58xTkE9PofavQ/DPjvUdL0gqlst3BGdwiOS6f3lByOh5/HNY1I9UaRZ7Jk0hryuP4uyJIftnhmVI8/eS6GfyK4/Wr9p8XvDUrBZrPVLc9yYlcfmG/pWdiro9EpcVyNp8SfBly20aysD9xPA6frjFasfi3wu6hl8R6Tj3u0U/kTmlZjufNz/ELW55BHb2thFnvsZyPzNRXXizXm25vthc4HlRKv9K5ixJec4AC+1OvZtksYUjIbNJxXNZItP3bl2513V5riWG71G8ORgZmZQvvgHFAnuJyiLLcuhyPvg4BI45BPbvWRqTSNdlzyCo249KbC57y4x03DP4Ct1axg73Ni3kuzPOFeeNOMnz0TsccgewqK6dBb7SyEsitlSWySD94n8OKoGbyy5DglsFiqDimBvlDHcyjsT0FAizcZXTY5Bj73WsttzHJ/M1oyTK1hIAmBnIHpWXVxJYpPuPwqW3eIN+9zg9wOlQmkAycU2rgnYsnyyQu1sbs9cGnFgZlCkKuNoGc4FMS2lIyQBk4HzVKljKJVXKFj0CnNTZDuT20YmmEcZ69TjgD1Nb9iVgtpFiyA3AJ6nPGT7ms+zhCEW8WCzf6xx/noKmnmEaOw6ADA+mcU1Gwm7mXqUolvZHJ5JOPoOKqkj1FNZzvRj3B/nTw215G9FzVCI+PUU0/WkVdzRJ+P61dkwJFQdAOaAKgQ4yAceuKk8h8AtgD61YbPkvn1FITlB9KAI1JiUlVB9zUEskkvDHj0FWM5NV2yDgD8aVle4+Z2sOso83A4LEdAK0wPm8lMc8uR/Kq9mn2e2Mp/wBZLwvsKuxJ5NtuP336UxAqh5AoHyL+pqY5GB3J5p1smyPJ69TSIP3m40ASAZIX2xUqnBB9BUAba6nsTilnfy0duuOaBjoyWkZupJ/SrSusRC5y+OnpWdbyiIH5vmxyfSpYHy248k80CLyuXcLn5R2FZl1rTw3TwxwoQrFcsxySPpV6N8YIHJNcxdHN65Pdyf1NAHY207T2kT7Nm5QxANamk3P2eUKzbY3wGPoezf0PtWTpdykdpbxqhd1jXgDPOPSrJvMuVnjwW7BQSR/IUh3LOv30tlcmN0ZkcbkzgjH/ANascXsU7v8ANFFxj5xtA+lb2o2sd/paxozM0S/u3YcjplSfft749a42Z2FxPHDyrfKSF6rx/Ws1G2xTZqrhS5S4hO7ABVulVpklMh3FiRxxTtC0XWdXvhYaZZXN5N3igiL7f97sv1OK9OsPgp4tubVJbi70mycjmGSZ3YfUopX8Mmk2kNani9hlYHkPAHGaqTSB5t7evT2qzNIxtDEFVF2gjByGHtVAI3cYoitW2VOVkkizFIs0ipzxnGfpSYcT7dgwO4plugWRTuCn1PQVJbuqh0kbJBJUina2wk7rUhndgzDAHODSB2wBk49KuSqjKpAO/o3FJbRuYx1x6VSasQytk/ZnQ561XwRV2SLaXB/umqojY9ATVJkjDVnT7VrmXsEHUkGltNPu7qQJDA7H1A6V12laN5EKht27+IYxzUylZDRkHT5JFVI2HDA5x1qaSBbOIoPmlbhj6e1bWrWskGnMVby9xChl6isC3cn9zO2ZYzg57jsaUNdWDLVuFt7fJ5d+p9BWRezExnnpjNW7uYxgq3X/ADismdt0Dn3FaCIZjwmO2f506U4jY/3gKhJytSSnMKUATQr++TPQKM/lUuSZGY96YPlXPqAKeOnFADm5hP1ptKThQKYTzQAdzUkMYkYKfu9TUWasvmOBV/ik5P07UATW4E84dh8i8KKtf6645+6vSo7ZfKty3ciprYBUz6+tABPIeEHU9cUqcPt7Kv8AP/8AVULHMhbGaWE7vN9wQPyoAbM+YSVOcN/I0l5LiBmHsP1qGOTKsreuaj1AkWbfh/OgAgYmFnzwzVfttxIA6kcVnWw/cxp64zV6SdbSIkHLkckdqALwkitQHmYFh2rmJjunLepzWxZ25kImuwWY8pGegHq1Yzcyt9cUAdnav5MSIFC/IoOOMnA5qckMVOAWqqhDSnaC/OKdJcrD8iDzJT2HagDpNMik/s50wQZVYBvTPT9RXd/Bf4e+FvE1reajqsU897BMBLZ79kQB5V8rhmBIPGRgjpXmOn6nqCMpktT5ae/P5V0HhXxTe+FPFdtq9ixMUh/eQk4WVCfmjP8AT0IBqZJtaFJpM+mdO0C10+1W0061gtIF6RQxhF/IdT7mrJ066XgBfzrX0LU9N1bT7e9sZg8NxEsqZIzgjoR2I6H3BrRMIJ/hrlsbXPzcjtZCoCuQo5AJ4pzWT+WVU7jj0rr7fw9J1d1UfTmrkWi2sYJkfI75PFae0MuU4ZdPkIAZQfXJqVNLkY/LC35V6JpegT38oj0nS7q+b0trd5P1UYrtNH+EfjbUACdKt9OjP8V5Oqn/AL5Xc36VPtR8h4ja6TcyoGI2g+tXf7HnReF3eoFfSOk/AmNFU6z4jPHVLSAKP++nJ/8AQa6vTPht8PtKAL6b/aEg/iu5Wlz/AMB4X9Kl1kNU2fHsenGa8SGC2kmmbjy40LsefQZNegaL8JfFOolWg8O3iRno06CFfzcj+VfU9lNpmmRiHStMtrRBwBBEsY/8dAol1K5c8MFB9KiVd9ClSPGNA+Beuqii91DTNOQ8sEDTP/7KP1rstN+D/g+zCvqeoX+pSjqvmCJD+CDP/j1daZ5H++zH6muR+JOuvp9nHptm+25vFPmMDzHF0OPcnj6ZrGVV2uzenQ5pKKPH/jXFpi+IHtPDVjbW+j2kYjVrdC2+Tq7M3JY54znGB1ryHU4lyJInIlXoex9q9fvpFiBKjAXoK848ZfZrh2aOIRT9dyDAP1FaYbF83utGuJwKprmizlHuXf5X7dQe1RzsPJKjuagkDK5DdRTSc16J5glStzEn4/zqKpRzGtAFg/6tPpUiHgUw/wCqT6UimgB7Gm9aM0DrQBNZRebOFP3Ry30HWpATcXme2ePpT4/3Fmz9Gk4H0/8A1/ypln8rE47UAXZTwFHrT2+SGkQZcU2+kAAUUARBuCe9LCxXOO+aiUgrkGnA4/KgCI/6w+9M1A/6K/vj+dDf60fWmX//AB7N9RQA+3YqVIGWAwB71YWPzLnao37OW9N3p9BVW0fG6XuowPqf/rVpaSMWu9hhc7mP970FAD7qTyIimcyOOcdh6VgwjdcKvq4/nWy7hhK5BPysf0rHslLXcIHUyLj86AOqnvba3kZNwOT8xB60+1vLDIEeVJ6nHJqO1021iG+UebIeTnoDV1FiwQEUD1xigC1bPG5JSRfoeKsuIZjDETwj7uPWsdmCEpbpuNN829hbzGjOB6UDPrX4ZaNfp4B0loWtZRJCZQjOQyhmJAzgit9rXXYztW0ucf7Eikfzryn9nPxa99plxoc0+JLUedACf4ScOPwOD+Jr2JdSuAMBzXFNWkbx1Rw2l/AzQrUB9b8QXt43eOALbof/AEJv1FdLp3g74e6KQ1t4fs5pV6STqZn/ADkJ/QCpJJpZPvyMfxqI1z8zZpZdDZOrxRRCK1t1SMcBcYUfh0qnPql04wHCD0WqJNNbpSAe80j/AHpGP1NMB560wnFBYUhkhfigNUWaaXxQMs78D3rxzxfqIu/FWp3Ej/IknkR/7qDH88n8a9Tvb23sbWW8vJlht4EMksjdEQckn6CvmL7f4g8SXl1JpksVlYGV9tzKpLOdxJ28Z9P5VMqbnHeyOjD1FCe12dFf5kifaO3evMvEpaO6YHpXdaRp/iY3ph1LUrOa267th8z6ADAHasn4ieH3gsvt8D+Yqn94CuCPelh0oVLXudOJvUp81mrHm10Axz3qtVtlLNjGfatufwpKrQslwgRlBkDfeRscgDvXrKajueG029DmqlTOwZFdvpmn2thEUij3M33ncAk/4Vj+M+bq2fA/1RXp6H/69KNVSlZA4WVzIU5hx6GmqKIzlTTlxjNakAualtYjLKqDqTUJcDpV60YQwNKepGBQAzUHBlCJ91RgUtqMOPSq24u5J5NW7MZUt6UAWfO8tCe9UJZTK5zUlw2TjNQKvNAE9upGSacx5OO1OUbUqEnlqAGE5kB+tMvTm3b6il7g+9R3Z/cEHuRQAWhzbHtzk/lW3HlLKOL1GcHsOwrCsvmiMfd3Cj8a7fw74b1XxHqH2bTIPMIG5mJwqD3NJtJXYGROoi06c8Z8ps/lWFpwzqFsPWVf512njTw/qXh+0nhvYS4KYE8fMZ/HsfriuLsAf7QtwBk7gaUZRmrxdwOteSOL7zb2Hp0pY7hZhteAMoOc7ipP4/8A1qqixuR+8lIKkZAU5qaI9AMCm1cDo7HTNPu4VazuXSQjLRvgsp/TI9xS32j39gVNxFuicfLIvKsKxraZklVlYqyHKkHGDXYad4hF9ZpYXzKjjhJcfK3+8Ox9xXJU9rS95O6MZc8NVqjH8P3tx4a8QWet2Gf3MmZEHR1PDKfYgkV9R2N/b3llBd20geCeNZI29VIyK+a7yzCM67cdnX096774a+NLHRfDK6Xqys8lvM6wn/pmcED8y1PnjXipROihVUldHrZJpCcUnmw4yJoj/wADFQy3Vqn37q3T/elUf1rkszquSlqaWJqBbq1kbEd3bufRZVJ/nUmSRgAn8KVmFxxNNJpGOOoxVWS/slk8tr21D/3TOoP5Zp2uFy1mszUNd0Wwvksb7VrG1upF3rFNOqMR64NXlfeuUO4HoV5FeM/F/wCHfiLVNfvPEGjTw3nnKm60kby5F2qFwpPysOM4ODz3q6cYylaTsKUmlodh8X5Lm98GnTtOdv8AiZzpbtPG4KpHyzk/3gQuMDrurnNH0mx0fR4bcRKI4UCKX64HcmvFZr3WdAvTaXUV9p1zDyYmBQr74/rWvF8RNWa3aK5uIrlCu3EsYz9MjBq62DnJJReh04PF0aLbmtTtNeuUsbyzvIJN8M8vlMAwIUkce9WtZxc6ZNG5GGTBXGcZ6V49qmtNPJ5Jk/do+VKZAPoea9R8J+OdIuPDwt71Zlu3TZIEjyHZR97I9RWFTCyhZnfRxdKs2r2PNvDmiSC5F3eLtWJjsQ9WIPU+3866K6bNSXU6y3MkiKVV2JAPbmmwQtczpCvVj1PYetaym5O7PI5LPliU1UseKxPGkRW3tpscb2X8xn+lewWnhzQPJUbmZ9oyxkIJPr6VU1zwNo2o2q27T3UaBg+VkB5/Ee9ZQxkIyVzrlllZx0seDwnPFRvIRwDXqGvfDGO3t2bRr2WWdVz5Vxtw/wBGAGPx4+leZT2k9tcyQ3cTwSRth1cYIP0r0aVeFVXgzz6+GqUHaaEgVpHGTx3qe4nz+7XoKrvLxtQYFRAMzYAJJ9K2MCxHIBwetakQMdryOTyaqWNowIkl/AVanP7vGaAKzNkmnRDJqMnnipohxQBLI2E69arbsKammOBxUL420AID0FRXXMB/3hTwcE1FdH91j1NAD9Fimmv4I7eMyyeapCjv619EfCqG50yCWzhmRbq4bedsfQYxgE8ZHP5muY8F+B7bRtItdRljM+oTEiZ2PyRqR90D69SeuOK9KgEjpGUuI4yqj5FRQfzHf9a469aLXKUjD+Mtjet4N1e7vYVn2QqBMXUYO9RkAYrw34d6edT8dadZ/YEv1Z2LW7kgSAIxIyCD2r2/4iahLfeDrzSbuMNNIoCkZD8MD/SvNPhlo15p3i+11MSm32JJjzo8dVKjnkc5qKVRQpyd0KbSZ3F34Y0yPML6Nc2TKePJnY49sNkVj3/g1nDPp1zHM3aKdfLc/Qjg16WdXuZIV+3RCQgYJViB9QDUN61nPGhtywbncCoBHp/WlCvK2oHj134fvrZ1RoXWQjJjOMj6ev1FNh03UB0spwO5YYH5mvTNWtI7mz8u9VbmFsAhXAkT0II5B9/z4rh5k1TQryaOHUBdpG/Mci7ty4yGx7gilLEVYrRp+plUlKOxJam+aNFuLdiycBgQ3HoQDSSCUOQYD/wIkEf4/Wrtl4k066QJqVmts4P+sjBKn+orUjg0+4QS22pxCM9AZV/rg15U54ilJyStftsefJ1IO6VjMa5nVsBiaTz3YYdVPswBqiLqPO3IB6n5qVJTvweRmvrDuJpVQgttVCPTimx6nf2jq0FxKUB6ByCKZI/I5AHr1FV5HO/CnA+uD9Ka8xM05/EN5LGPPu5HTOMSOWA/OsG8KXN0sroDkEBh61HfQbgVX7r8j6isuGVoJ1hBJVuVz/KqSS2Fe+50djfXdtcoltdS26AEnY5XPHtWlca7rclrmPVr/aDzi6fj9awg4Khl6gHk1ZgnAiJz8p9DQ4p7oSbRR17Up76OeLUXe8llKqJbg+YwVRxgnkd65q/0K3WIGCZmJGcmtTxNfRM8UEeA6n5m9Aeg/rUXnm4IU7PNAwQOh+lebWTpzbj1PWw8o1IJSWxy0lhdxscJvWp9Og1JJFaygvA4P/LKJmH6DFdJBLDHMq3ilFB79D+Ndhp+vC2t1jgCBP4QuAB+FYzxU4ra5vTwVOb+KxyNm2uqu260K/fHO+O1f+WK7qytXl0yNtG0a8kd1+eWZPKJbHOd+OPYVch8V7VXzGQnuQau2/iOKXOyVc+hNcFTESf2T0qGDpU3fmuZcXh/xZdrvuptOsQCAv70uxHuFGP1rbstJvbePbNqiXBA/wCeJUf+hUyTVmY5ABA9Dmnxai7j09q5Z1ZS6HdCnGPcsTJtAU4yBwa57xT4Y03xHb7bxPKukGI7hB8y+x9R7H9K15royHBNIriQbRw3Y1EJypu6YVKcaq5ZK6PCNa8L3ukak1peEbesci/dkX1Hp9KbBbxRjbGnPr3Ne0azpdtq9sba9ibCnKSKcMh9Qf6V5r4t0mTw68SLKkwn3bCAQwA6kj8a93C4yNZKL+I+cxmAlQblH4TOEAC/Mfm9Kyr9wsmwdqc11OckDFaNt4O8U3yC4TS5Ckg3BndVyD3wTXXKcYfE7HDCnKekVcxEO44q3HwuK6C08AeI/wDlpbwR/wC9MD/LNakXw81Yj95c2qH/AIEf6Vk8XRX2kbxwWIltBnDzHJxTMmvQYvhpcMczamB7JD/ia0rP4b6dGQ1xPcz+2Qo/T/GspZhQXU1jlmJl9mx5UASdoGTnp3Na+j+HNUvru3LadN9nEgZy42gr+PJr2DTfDWnaeB9mtYYz6hRuP49a1I7RVPAHvXJUzVfYR3Usmf25fca/h+R59KSP92CMZXuCev8AjTrqFxu8oskmOVBxnHQEVUs5NivCW8sDBVgO9a63jTRhLhUlIXc0yjOCT0Ldc4GefWs1JVPeWh5lel7Go4dji/Hl+zaUsF7BE+4BQFHzH16f0rK+HNjA+ry6LcLqGnzuPMjtZIScg8h1BGQOemMHjvXW+KrGCayHl6l9nkRxIkjIrBWByMHrW/4Z+IVvaafFdarDY3mrxIbfzrWUDcmc5O4fLkgEgZGa3etFxauc0oqTszF8Q2GoeHZFtbt2ltpCTE+cBh39wfY1mnU9Nt4mIWdpJOAVAA/XrTvF2q61rt9N9tkzEz7lhSdTGnpjntXI3slxZzGG64BGVYkEN9cV5znWoPTWPbsctSUqL01R0japE2DHEQc9XI5/Kua8Z2j2yJre5zISGmUE8gnaCPQj5fwPtTLPUFim+dS3GdmcEj/ZJ4qPxFq9vqGm3sZeSNVhJBcYIIIKrj3IA9676FWNRouFSFRGSWinhNyiBlBy6jjA9R7+oqFjCDjIqhpd2HkHzgODkMOCfrUl1FPHMRFD5iHlSOw9K6JQlT1hsS1KGsdjameOQcEgnoV4xVdb17d9lww2k4D44qi8rwnD5Iz+IpJJhNFtchk7cda9hoVzbS4UrliCMZ9aZI5bj+RrnILtrOfyZW3xMfkfPStjzt67h25ApIdywjkqyHIArL1WIgEIMMPmjOe/p+NWt54Iz9ajuT5yY6dx3qhMW1uvtOnieI8uPnB6hqhvL9YNLaTvjj61T0uVYL+a2ckRzjco9G7j8+fxpuuqsVjcI+Mgggf1o6B1MhpGkDOzZY85PeorHUGtJy20lTwfUU23bKHJqtMpOTXO4qSszeMnF3R0ovob+IsuGK/eHTHvSiAFRtZl9MGuXtJ5bacSROVYfqK6C2ukuPmL/Nj5tp6GuOpRcdY7HoUsQpaS3LUcExbieQjpjOa1bWwvQA25wR2PJrLi80MHjm5HIrXttfvLZNkqJN/tdDXJPmex20+RfFoathdLaEBp3jP8QA4P4VqJrPmH5cKg446n3rkpdSM5LiyIJ776mtrlCSrR7T9a5p0b6s6oYi2iZ2NvfwsOJAW9M1P9qVOhGa48TIMN5Ug9x0obUHUgAnj1rB0L7HQsSludm2ort6Z9a4L4nJeHWbJ7iFlhmtQ9sSR865OSOfXir8GoFpVjbPzY7gHkgcZ78/zp/iq88EPN5GpLe6jqVsvlloJSI4xngDkZx9e4rswNHknzNHn5jieeHImcRHaNO0ccUMhcuAx2EgD8K95sbmEWqIMAKoX8q5Dwg/g3SdatNd8IXmr6fq9ojxy29zIrxuxBVypwDjax4+b9abpuoYGwtgqSMU8zXOo26CyeSpuS7nbefFu3DAx3qVZoWHzAE1yyXjHHPFSi8IGS1eR7M932iOlzC3K4560jeWvcYrnRqOP4qQ6nxjd9KFTYOqje3IMAkc0edEq7iwAHU1zn9pDnc2BWNqd9f6g3kWn7uEdXJ5P4dapUr7mFbGU6MeabO8hlivFdrYlgG2Haf4h/+utZRHbQKGREm2/NIH+9k8flXm+hzanpdq1vaXAwzFmZgNxzjpnp0p7TXbOXcOzMfmbzNxP51r7eMFynxeMzCNSrKUVubPjiX7RYLZ2ogu7liCTHKEA/HIrjbKyngunN/bXEQZcLiVJufwAP613mj3Og/ZWN7qup28oAHlrBHIp+gPf2JH1qbVNR8Kra/ZobiYzgblnitXjDH0dGLAfVT+FdMcW1Cyscn1mb10PPruSEAR/KSPVcH+dZ89xbsphKlc9Sq8/zrqdTm0meJXWdzLnDpKAce4bjj2NYd7Z6bNGVKIrnowY4/wDrVnHFpu0kJYq+kkc5PdXETeU7F4yflPT8R6GkkncQBXxNCR1I5X60t9bTwqYYJmkizny35wfY1BbXEacFeDw0b/0NdKjGSvET5W7xIpZSGBj2ceqj8607LUbYW6iW9kD/AMQMWfyx2rMvIEx51q2VzyvcVmOXViADj2NdVKTtozWE2jonZXHrmqkp8onByvcU+7Sa3Y7gTH/ex/Oqpk3Dr2r22CFugssR5yD0PcGo9L1B4Jfs1yxwPumomfynJ/hPUVDeQ+dGGQ5ccg+tS/Ia8zpPMDJkZOTnj+dO3DacE5H61zemXzMBFIx3Doa1ln4xnHY007iaaI9SwCtyo+424/Tv+lS+INs2mGUHnbzz71E2SrxuAcjj3qOMb9Jnjb7yDb+R/wD1UPYEzEtj+7NK3pTYF6ipAuWwRz71ijZlSVcN0xRDK0Miup5Bq7cQNszhR7ZqiylXwwxQPc6LT3ad2KZJJ4WpIbmQSmKRd5HbvUOnOlvcrLFMAEj6n+eP0qje305laQzGT+6xUZWirCElZoKVScHdM13m3ZG5lX0yaYCnZ+awBfXP3vMz6jFL/aFyGzvyD7Vx+x7Hb9YvudPbXLxH5JHA7jPFWlv0/wCWgUn2zXItqU4Xov1pE1CYnLMQPbpUPDX3LWLtsde1+slwkMcKvvOQ/dSA2APqcVkWOnpqN7BCZbpGK5B2LJgdWY8rhRgknsKpRSsSHEhBBDBgeQRXQ6Fd6VLcuLmddNeUfvd6nypv9kMB8ueSQ2B71tGn7ONkc9Sp7SVyMW8Q1Fm044SNzLHPIhLseu4r/D24x35Jro7WyurSffcx7BcItxFz/A4yP6j8KksdN00ahGuo63p1jbF/mME3nyvGeoATOOOMse/c11Os+FviBd38mof8IXP9ncKIFhmVgsIAEYwMkfLj8c1zYmPPGyOjCSVOfM9DCWXA60kk5HepLrTvEVkM33hHV4R3Pkkj+VZkmo2ysVns72Fu4aP/AOvXn+wa6HrfWYvqTS3WzvzVSbUcfxYqKe+01+szp/vRsP6Vg+ILu2jtiba5SSRzhQp6e9aQw/M7WMqmJ5Ve5Y1fxFFBE8UcwaXpgHOK5tNUZZBIkjpIDkMCQfzrJOScmivShhoQVjyqmKnUep7B8LblNXtZk1CV5pRI2xi3zYCrnB9s/rXR3tqYnOLglB0DD/CvOfhy7R2MMglWDbelRKRnBbyxge5GfwzXWfaZLm0guvtSJdSQh5Yxgq/bO3t0HI9K87EYSnKTujhnShPdG7pE+iiVUv3wM87oA6n8mBro5tM8I31q8kNxDp0pP7qVJJCj/VHHH4E15NPezPkmHcBgGSNgVzg5P0yMfjVcXkigbXdQecZ/pWP1aKVrGLw0eh3WqaIYOXeO4iP3ZUQlT9cjIrnb7TIG3bVA9ChxWc2pSxQbotoPqOCfrjrUMWvKG2Tq6n1HzCuV4SqneDOeVCcdkUdTtGifiVoz23dPzrHvGmU7Zhz2b1/Gupl1Czv2aASxyyEfcJw35VlT6RKzZhdUU9Vc5/SuyjUcdKmjEppaS0MITGM8klTxnuKGkGeRn3zVy+0mSPndgf7pxWa0V0h2rtIFd0HCeqZvHlktzettTgu4jHJ8pI4HvTb/AE54IEcPtkc/LH6j19s9h3rFkibT70qMHaeHHI+o/wAak1LVLgBIkkbcfmkbdnnHb+teu5myhqBbLNE6lXBwQf5VHHI0T+U/APQ1NDIskO4pGz44JGP61FcSiRFV7i3yvYEc/kKG7AlcgvoSrecnUcnH86uWF0JVAJw4GD70Wkm6JgbfzSBhCpJH6VRuoJbebzVjZFz/AHSAKV7aodrqzNppG2BlwdvrRBNGPtm/GHRSB+n9KoQ3BZA645680k7xhlKkENnIBq3LQhRd7EaKEiIxyf0pUO3k4JzwKldfMTJGT1wOgqszGI/dKg+1Y6muhamkWRNrZ34wQDgD8qz5lYPvD/TjinMxD7hnFSxqJuuPTk0coXsQs7sq7WGV4PanQgMhQ4571afT3XDIVbPZTmlWyuW4S3l+u00+Vi5kZsiiKT29KaQBx1U1cv4HWL94pDA9xVdI0aElWOR1BqHEtSIQChz1HepI/lbcmCO6noaYRgetJjuOlSMmlKr/AKhmCnqp7V9Jfs3/AAYFzZ2/i7xlbCSCVRJp+nzLkMvaWUHqO6qevU8YFch+zF8MV8Y643iHWrcPoWmyj9244u5xyI/dV4LeuQO5r7Gxxjt6VnUnbRGkI9WZEPhjQreZZ7bRNNikT7rx2qKR+lXTHj+H9KtZxSdawNUVgD2JH0NRXOnWt0MXNrbTg9pYlb+Yq+BSgZNKw7nJah4A8IXuWufDOlnP3mWLyz9criviz4m3miaj421B/Ddotto8UhhtFDs29V48zLEn5jk/Qivp/wDai8fyeFPCq+HtMYDVNbikRnzzBbfddx/tMTtHp8x7CvkJVCLW1KPUyqT6GjoPg3UtZj+0QFRCScEDcev4D9a27n4dQ2yAT63BFKRkxzqUP4EZH61c+GWoFrWexkeTy45fMCKcEhh/iP1rptZZcEpZqinpuGTUTqtSsCimrlDwbpNvp2kXFpFdJcrJJuLAY2tgDGcnnjORWFqFhPFcWsttK09vbNGnCgSxqpOQRjJ4Pr68V0eiARW84ACgvnj6VV1aJJ8ucrIFwJFOGFcjm1Nmb0ZxSajIuq3UNsiFJ7tjubIGAB075/DmkbVDckrBCyiQlY3POD6kY4FaeqxPIzb1gmXOQGTDDrjn2qh5UUUmYgV5J2hjjJ6nHStrwethDLO/Mha1KgsgIZicEkd9voadb2015diKEZJOSewHqfao44YoTmJGLkbQSSx+grtNE0wWMCrKoad/mkHoewPsK5sTXjRjdGFeqqcb9SDStFihdnihzJJ96U43EY9T90Vom1ht0+RkZ++35sfj0rWsUtFfdexyToB9xTtFGoTWhmJjso4I+ojjyWH1J6V4c8S6mt7s813m+Zs5e7geQYJY59qxLnQrwykiIgHkZIH6V2skV1MXW32RDGdsfX8+tZM9iiysGlDN3PXmt6NacENScDlFtY7qySBic4Oxj161mNp04MkMsRwQcP2GO+a17XdEqozYJdlz+X/16gvbu5d/KACx559TX27SaO5N3MOxfGUYgEcc0TQkMXhUFe49Ki1FDFeFh/F81TWc/qevWsU+jNn3RU3FH3JwaupcRTwlJFCtjqOKddWwlG5Cob+dZzho22uCCKH7o01Idu2ttYkrnqKDw4ZSTk+lM3A8Gp7CMvdouMjrj1xU7lbGvpssRcb1wytyPWt66t4bmIFYkbjkY4FcvcI9vc+aPut1roNGlDkKWwPrXRB9Gc0l1RUj0u1LkHcqjqBST6DuG62mH0YVtXdseZYOmcY7CnWbl/kZRkCq5UTzM5WRbyxOJUYD16j86tWuruAEc5XuDXXG3ikQ52n1B6Y9KxL/AEC3lYtApib/AGfu/lU8rWxSknuRM0N3HhGxxyrcisn+yTHL8s2FJO5WHIp09nqFi24p5if3k5/+vV2yvIbsBW4kA4Pf8aWj3HqtincaTEBvglyAPmVu59vSo/C2g33iXxPYaDpaB7q9nWGM9lz1Y+wGSfYVsrbtv2lQCe2eCK95/ZM8Dw215qnjGeIbgPsVlkcKTzKw/wDHV/Os6yUY8yNKTcnZnt/hHw9pvhbw1Y6DpUYS0sohGpxzIerO3+0xyT9a1TStSCvOO4bg5oHWlxzQRxQAoIpRwDSYri/ix8RtF+H2ifar9hc386n7FYI+HnPqf7qA9W/AZNCVwufPP7Ua/afiNf39xejbFFDZ28DL8wKAFse2WY59TXjr428Vd8beItV8U+ILvxBrEqyXVzIGbYu1EAwAqjsAMD+eTVAg7Qc5+ldUYtKzOeTuzd8AXbWXiEYP+tiI/EfMP5GvVdZuILyzjlBG4jkAd68Kinntplmt5WilQ5Rl4INalp4y1u3wJTBcAf8APSPB/NcVjVouTui4TSVmeiwq0ZZcYDDIz3wcVWuOThsgfyrJ0DxPJrtwkUlrFbtAvVGJDA+x9MD866GeIMpOVDY6HuPX3rhqRcZWZEndnK6jw5wwPPrWVNya0dcbypG3KNo7g1zk2o2ykgMSfYVrTi2tBHUeDrb7RqDXTqHS1AKjrlz938uT+FdnaW6mQedJtDHLuRWD8OjbPopfdh5pWbnjpwP610F/LIIxAG2x8McDG70rwcw5pVnfZHm4huU/QZf3KyzslipjiBwGPXFV9yQodzEse3c1j6z4j0zSwY5ZjJMOkEOCw/3j0X+ftXGa14rvtQRoLdVs4W4badzsPQt/hiqw+XVq2trIUKE567HX6t4qsbAOhnLSnhkiOWPsT0FcxN40nL/udPgCdt7Fj+mK5VlI9x7Ule7Sy6jBWaudkcLTW+p3NxGYwNy4+csCDkfdB/qKpXCAnO7CkCtacfKEOCNhb7oGSZHBPH+6PyrNuFAXHbdmvaWxD3Mu9tUmlUsT8q44rPubc2zDDggnjsa1wdztn1xWPq7E3hUnhQAP51xyb9o0dUFeCHxXJQbWHHrSzeXOvUZ7e1Q2ahkORnnH0q35MWPuCr9rbRk8nUzGBU1f0uGby3nVTjOM/wA6dJDEEPyDpXU2trDHYrGiYULgVdFKTJqy5VYoiBZ7Qgrk59KgsN9vMEc4weDWnbKAiqOBj+tQalGiyZUYIrocepzp9DobF1nt1QjPHbtUVzaeTLkKenaotAJ2IM9Qc1vXyr5RO0EgZ+vFMLGXbtuG0gD5eD05qSRgRtGPcU+BFKsp6KcioJQEmIH4+9K4DLiJCpPBx2xzWHqWmwys0kOYpR/Gox+Y71uXAAIx3bn9P8az71mUfKxHPahq49ijp0sv2uOzvBl2+WJ1GQx7Y/HtX3L8PtEXw54L0vRgAHtrdRKcfekPLn/vomvkv4Y2VtqHj3w9b3USvG+pQll9SGyD+YFfabVxYp2tE68Ot2NIpM0po7VyHSIaO1BpV6ZoApa3qVvpGjX2q3fFvZW8lxLzj5UUsR+OMfjXwD4o13U/FGv3euavcPPeXTl3JPCDsi+iqOAPSvsX9pa5mtfgp4gaFtplWGBj/sPMgYfiOK+JlJ61vSWlzKo+hq6BoN14hvX0yxTfcfZprhU7uIkLlR7kKcViMWgfHUY4PqK9W/ZiAb4wadkdLW6I/wC/Ro+N/h3StN1XxBDZW/kpaamxhC/wh1Qlf93LcD2FXfWxFtLnloKyrxjfjj3r2/wx+zxN4m8NaZrdn4utFjv7VLhUawclNw5UkP1ByPwrwUMVPBxivtL9lK8nufhBYLMwbyLq4gQ9wgfcB+bGlUbSugirvU8om/Z+8W+FL5NTstRtNVjj+/FDG6O69wAc8964jxd4otoIpNKsIVllRyJJHHyoQegHc5/Ae9dB8aPi5451PxLrHhtNV/s3S7SZ4fJsVMRlUHHzvksfpkD2rx1ic1i6Sm1KQ2ktiS/uJrqRnnmkkJ55bj8ulUwmWAyBnuamPSoz3rdKxJ6R4KtvJ0O2kLhkO5wegOWP+FR/EDxLdQwJDayBHmypdeqqAOnvz1rnfFN5cW9vZ6TDIY7VbVGKrwWJHc1jalNJNBbGRi22MKPp/kV5tDCqc/az6t6HPCim+eRSYljknJ70A0lFemdI8H0pSAewptOHSlYD/9k=" alt="Fayiz Muhammed"/>
+        <div>
+          <div class="founder-name">Fayiz Muhammed<span class="founder-verified"><svg viewBox="0 0 22 22" fill="none">
+<path d="M11 1L13.09 3.26L16.18 2.5L16.9 5.6L20 6.32L19.24 9.41L21.5 11.5L19.24 13.59L20 16.68L16.9 17.4L16.18 20.5L13.09 19.74L11 22L8.91 19.74L5.82 20.5L5.1 17.4L2 16.68L2.76 13.59L0.5 11.5L2.76 9.41L2 6.32L5.1 5.6L5.82 2.5L8.91 3.26L11 1Z" fill="#3B82F6"/>
+<path d="M7.5 11L9.8 13.3L14.5 8.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span></div>
+          <div class="founder-role">Founder, Obsidian Club</div>
+        </div>
+      </div>
+      <div class="founder-bio">
+        I'm Fayiz Muhammed and I have been selling digital products for the past 2 years, with 4+ years of experience in the trading and content creation space. I'm also an active trader. I've helped multiple creators build organic income systems and turn digital products into a full-time living.
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1965,206 +3036,150 @@ body::before {
 
 
 
-<div class="divider"></div>
 
-<!-- YOUTUBE PLATFORM SECTION -->
-<section class="pls yt-section" id="pls-yt" style="background:#080808">
-  <div class="pls-progress-line"><div class="pls-progress-fill" id="pls-yt-fill"></div></div>
-  <div class="pls-num">01</div>
-  <div class="pls-container">
 
-    <div class="pls-platform yt" id="pls-yt-badge"><span class="pls-pdot"></span>YouTube · Faceless Business Model</div>
 
-    <h2 class="pls-h" id="pls-yt-h">
-      Build Channels<br/>That Earn While<br/><span class="yt-accent">You Sleep.</span>
-    </h2>
 
-    <p class="pls-desc" id="pls-yt-desc">
-      AI-powered faceless YouTube channels targeting high-RPM audiences in the UK, US, Canada, and Australia. 18 complete modules. From zero to earning — no camera, no face, no experience required.
-    </p>
 
-    <div class="pls-highlight" id="pls-yt-hl">
-      <div class="pls-hl-item"><span class="pls-hl-num">18</span><span class="pls-hl-label">Modules</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">6+</span><span class="pls-hl-label">Hours Content</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">$25</span><span class="pls-hl-label">Max CPM Tier 1</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">0</span><span class="pls-hl-label">Camera Needed</span></div>
-    </div>
 
-    <div class="pls-cards" id="pls-yt-cards">
-      <div class="pls-card"><span class="pls-card-icon">◈</span><div class="pls-card-t">AI Script Generation</div><div class="pls-card-d">Structured video scripts using AI in minutes. Full workflows included.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">◎</span><div class="pls-card-t">AI Voiceover</div><div class="pls-card-d">Natural narration without recording your voice. Studio quality from your phone.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">▲</span><div class="pls-card-t">Video Editing Automation</div><div class="pls-card-d">Repeatable workflows that cut production time to under 45 minutes per video.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">⬡</span><div class="pls-card-t">SEO & Metadata</div><div class="pls-card-d">Titles, descriptions, tags, and thumbnails optimised for maximum discoverability.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">◇</span><div class="pls-card-t">High RPM Strategy</div><div class="pls-card-d">Select niches and audiences that attract $8-25 CPM in Tier 1 countries.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">○</span><div class="pls-card-t">YouTube Analytics</div><div class="pls-card-d">CTR, retention, watch time — understand every metric and use it to grow faster.</div></div>
-    </div>
 
-    <div class="pls-bottom" id="pls-yt-bottom">
-      <div><div class="pls-bottom-t">YouTube Faceless System — Inside Obsidian Club</div><div class="pls-bottom-s">18 modules · AI production · Tier 1 targeting · Lifetime access</div></div>
-      <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="pls-bottom-btn">Get Access →</a>
-    </div>
 
-  </div>
-</section>
 
-<div class="divider"></div>
 
-<!-- PINTEREST PLATFORM SECTION -->
-<section class="pls pin-section" id="pls-pin" style="background:#0a0a0a">
-  <div class="pls-progress-line"><div class="pls-progress-fill" id="pls-pin-fill"></div></div>
-  <div class="pls-num">02</div>
-  <div class="pls-container">
 
-    <div class="pls-platform pin" id="pls-pin-badge"><span class="pls-pdot"></span>Pinterest · Organic Traffic Engine</div>
-
-    <h2 class="pls-h" id="pls-pin-h">
-      One Pin.<br/>Years of<br/><span class="pin-accent">Passive Traffic.</span>
-    </h2>
-
-    <p class="pls-desc" id="pls-pin-desc">
-      Pinterest is a visual search engine — not social media. 500 million users actively searching for what you promote. Zero followers required. Content published today earns commissions two years from now.
-    </p>
-
-    <div class="pls-highlight" id="pls-pin-hl">
-      <div class="pls-hl-item"><span class="pls-hl-num">500M+</span><span class="pls-hl-label">Monthly Users</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">2yr+</span><span class="pls-hl-label">Pin Lifespan</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">75%</span><span class="pls-hl-label">Max Commission</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">₹0</span><span class="pls-hl-label">Ad Spend</span></div>
-    </div>
-
-    <div class="pls-cards" id="pls-pin-cards">
-      <div class="pls-card"><span class="pls-card-icon">◈</span><div class="pls-card-t">Pinterest SEO System</div><div class="pls-card-d">Keyword placement in titles, descriptions, boards, and alt text. Rank for buyer-intent searches.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">▲</span><div class="pls-card-t">Pin Design Framework</div><div class="pls-card-d">1000×1500px Canva templates. Fresh pin strategy — 5 variations per URL multiplies reach 5x.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">⬡</span><div class="pls-card-t">Content Mix Strategy</div><div class="pls-card-d">60% educational · 25% inspirational · 15% promotional. The ratio that builds trust and converts.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">◎</span><div class="pls-card-t">Scheduling & Automation</div><div class="pls-card-d">Batch-create 30 days of pins in one session. Schedule and walk away. Fully automated.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">◇</span><div class="pls-card-t">Affiliate Funnel Setup</div><div class="pls-card-d">Link-in-bio architecture. Bridge page strategy. Clean commission flow from every pin.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">○</span><div class="pls-card-t">Analytics & Scaling</div><div class="pls-card-d">Track saves, outbound clicks, monthly views. Double down on winning pin formats.</div></div>
-    </div>
-
-    <div class="pls-bottom" id="pls-pin-bottom">
-      <div><div class="pls-bottom-t">Pinterest Method — Inside Obsidian Club</div><div class="pls-bottom-s">Organic traffic · Zero ad spend · Commissions compounding from day one</div></div>
-      <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="pls-bottom-btn">Get Access →</a>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FACEBOOK PLATFORM SECTION -->
-<section class="pls fb-section" id="pls-fb" style="background:#080808">
-  <div class="pls-progress-line"><div class="pls-progress-fill" id="pls-fb-fill"></div></div>
-  <div class="pls-num">03</div>
-  <div class="pls-container">
-
-    <div class="pls-platform fb" id="pls-fb-badge"><span class="pls-pdot"></span>Facebook · Community Trust System</div>
-
-    <h2 class="pls-h" id="pls-fb-h">
-      Build Trust.<br/>Build Community.<br/><span class="fb-accent">Build Income.</span>
-    </h2>
-
-    <p class="pls-desc" id="pls-fb-desc">
-      Facebook converts at 8-10x the rate of cold traffic because it builds trust first. Daily value posting creates a warm community that buys repeatedly — without a single rupee in advertising.
-    </p>
-
-    <div class="pls-highlight" id="pls-fb-hl">
-      <div class="pls-hl-item"><span class="pls-hl-num">5B+</span><span class="pls-hl-label">Active Users</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">8-10x</span><span class="pls-hl-label">Higher Conversion</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">Day 1</span><span class="pls-hl-label">Start Earning</span></div>
-      <div class="pls-hl-item"><span class="pls-hl-num">₹0</span><span class="pls-hl-label">Ad Budget</span></div>
-    </div>
-
-    <div class="pls-cards" id="pls-fb-cards">
-      <div class="pls-card"><span class="pls-card-icon">◈</span><div class="pls-card-t">Page vs Group Strategy</div><div class="pls-card-d">Hybrid architecture — page for reach, group for trust. Both running simultaneously.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">▲</span><div class="pls-card-t">5-Post Weekly System</div><div class="pls-card-d">Mon: value · Wed: story · Fri: proof · Sat: education · Sun: soft CTA. The exact rhythm.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">⬡</span><div class="pls-card-t">Hook Architecture</div><div class="pls-card-d">First line stops the scroll. Number hooks, question hooks, bold statement hooks — all taught.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">◎</span><div class="pls-card-t">Comment Velocity</div><div class="pls-card-d">Reply within 60 minutes. Algorithm rewards high comment-to-view ratios with massive organic reach.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">◇</span><div class="pls-card-t">Soft CTA Formula</div><div class="pls-card-d">"This is what I personally use — link in comments." Converts without pressure. Feels authentic.</div></div>
-      <div class="pls-card"><span class="pls-card-icon">○</span><div class="pls-card-t">0 to 1,000 Members</div><div class="pls-card-d">Week-by-week community plan from zero to a warm buying audience of 1,000+ members.</div></div>
-    </div>
-
-    <div class="pls-bottom" id="pls-fb-bottom">
-      <div><div class="pls-bottom-t">Facebook Method — Inside Obsidian Club</div><div class="pls-bottom-s">Community trust · Warm audience · Consistent conversions · Zero ad spend</div></div>
-      <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="pls-bottom-btn">Get Access →</a>
-    </div>
-
-  </div>
-</section>
 
 
 <div class="divider"></div>
 
-<!-- FACELESS BUSINESS MODEL -->
-<section class="method-premium bg-main" id="mp-faceless">
-  <div class="mp-glow" style="width:700px;height:500px;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(232,0,13,0.6)"></div>
+<!-- FACELESS BUSINESS MODEL — BLUEPRINT -->
 
-  <div class="mp-container">
+<div class="divider"></div>
 
-    <div class="mp-badge red"><span class="mp-badge-dot"></span>The Complete System</div>
-    <h2 class="mp-headline">The Faceless<br/><em>Business</em><br/>Model.</h2>
-    <p class="mp-sub">Three platforms. One system. Zero personal brand required. The Obsidian Method generates income from Pinterest, Facebook, and YouTube simultaneously — without ads, without followers, without showing your face. This is what members build.</p>
+<!-- LIVE ANIMATED PLATFORMS -->
+<section id="live-platforms">
+  <canvas id="lp-bg-canvas"></canvas>
 
-    <!-- Split — what you never need vs what you get -->
-    <div class="mp-split" style="margin-bottom:24px">
-      <div class="mp-card" style="border-color:rgba(255,255,255,0.04)">
-        <div style="font-family:var(--font);font-size:10px;font-weight:700;color:#222;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:16px">You Never Need</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#333;font-size:14px">✕</span> A camera or recording setup</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#2a2a2a;font-size:14px">✕</span> Showing your face or voice</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#2a2a2a;font-size:14px">✕</span> An existing audience or following</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#2a2a2a;font-size:14px">✕</span> A paid advertising budget</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#2a2a2a;font-size:14px">✕</span> Prior online income experience</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#2a2a2a;font-size:14px">✕</span> Technical skills or coding knowledge</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:#2a2a2a;font-size:14px">✕</span> A laptop — phone is enough</div>
+  <div class="lp-container">
+    <div class="lp-header">
+      <span class="s-label reveal">The Obsidian Method</span>
+      <h2 class="s-h2 reveal">Three Platforms.<br/>One <span style="color:var(--red)">Living</span> System.</h2>
+      <p class="s-sub reveal" style="margin:0 auto">Watch the system work in real time. Each platform compounds. Each one runs without paid promotion.</p>
+    </div>
+
+    <div class="lp-grid">
+
+      <!-- PINTEREST -->
+      <div class="lp-card pin" id="lp-card-pin">
+        <div class="lp-edge"></div>
+        <div class="lp-canvas-wrap"><canvas id="lp-canvas-pin"></canvas></div>
+        <div class="lp-body">
+          <div class="lp-title"><span class="lp-dot"></span>Pinterest</div>
+          <div class="lp-desc">A visual discovery engine reaching people actively searching for solutions. One pin generates traffic for years after publication.</div>
+          <div class="lp-stats">
+            <div><span class="lp-stat-num">500M+</span><span class="lp-stat-label">Users</span></div>
+            <div><span class="lp-stat-num">2yr+</span><span class="lp-stat-label">Pin Life</span></div>
+            <div><span class="lp-stat-num">₹0</span><span class="lp-stat-label">Ad Spend</span></div>
+          </div>
         </div>
       </div>
-      <div class="mp-card" style="border-color:rgba(232,0,13,0.1);background:rgba(232,0,13,0.03)">
-        <div style="font-family:var(--font);font-size:10px;font-weight:700;color:var(--red);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:16px">What You Build</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> Pinterest organic traffic system</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> Facebook trust community</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> Faceless YouTube channel</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> Affiliate commission income from day 1</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> High-RPM content targeting UK/US/CA/AU</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> Passive income while you sleep</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#888"><span style="color:var(--red);font-size:14px">✓</span> A system that compounds with time</div>
+
+      <!-- FACEBOOK -->
+      <div class="lp-card fb" id="lp-card-fb">
+        <div class="lp-edge"></div>
+        <div class="lp-canvas-wrap"><canvas id="lp-canvas-fb"></canvas></div>
+        <div class="lp-body">
+          <div class="lp-title"><span class="lp-dot"></span>Facebook</div>
+          <div class="lp-desc">Groups and pages that build genuine community. Organic reach rewards consistency and value — not advertising spend.</div>
+          <div class="lp-stats">
+            <div><span class="lp-stat-num">5B+</span><span class="lp-stat-label">Users</span></div>
+            <div><span class="lp-stat-num">8-10x</span><span class="lp-stat-label">Conversion</span></div>
+            <div><span class="lp-stat-num">₹0</span><span class="lp-stat-label">Ad Spend</span></div>
+          </div>
         </div>
       </div>
+
+      <!-- YOUTUBE -->
+      <div class="lp-card yt" id="lp-card-yt">
+        <div class="lp-edge"></div>
+        <div class="lp-canvas-wrap"><canvas id="lp-canvas-yt"></canvas></div>
+        <div class="lp-body">
+          <div class="lp-title"><span class="lp-dot"></span>YouTube</div>
+          <div class="lp-desc">Faceless video content built with AI, targeting high-RPM Tier 1 audiences. Videos earn for years after upload.</div>
+          <div class="lp-stats">
+            <div><span class="lp-stat-num">18</span><span class="lp-stat-label">Modules</span></div>
+            <div><span class="lp-stat-num">$25</span><span class="lp-stat-label">Max CPM</span></div>
+            <div><span class="lp-stat-num">0</span><span class="lp-stat-label">Camera</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<div class="divider"></div>
+
+<!-- PROFIT CALCULATOR -->
+<section id="profit-calc">
+  <div class="calc-glow"></div>
+  <div class="calc-container">
+    <div class="reveal">
+      <span class="s-label" style="text-align:center;display:block">Interactive Tool</span>
+      <h2 class="calc-title">Calculate Your Monthly <em>Profit.</em></h2>
     </div>
 
-    <!-- Income stack -->
-    <div class="mp-divider-label"><span>The Income Stack — All Three Active Simultaneously</span></div>
+    <div class="calc-card reveal">
+      <div class="calc-block">
+        <div class="calc-label">You sell your product for <span class="calc-badge" id="calc-price-badge">₹499</span></div>
+        <div class="calc-slider-wrap">
+          <input type="range" min="99" max="2000" value="499" step="10" class="calc-slider" id="calc-price">
+        </div>
+        <div class="calc-scale"><span>₹99</span><span>₹500</span><span>₹1500</span><span>₹2000</span></div>
+      </div>
 
-    <div class="mp-split-3" style="margin-bottom:36px">
-      <div class="mp-card" style="text-align:center;border-color:rgba(255,255,255,0.06)">
-        <span class="mp-card-icon" style="font-size:22px;color:rgba(255,255,255,0.3)">◈</span>
-        <div class="mp-card-title" style="font-size:15px;margin-bottom:8px">Pinterest</div>
-        <div style="font-family:var(--font);font-size:24px;font-weight:800;color:var(--red);margin-bottom:6px">Affiliate</div>
-        <div class="mp-card-text">50-75% commission per sale. Pins earn passively for years. Zero ongoing effort after publishing.</div>
+      <div class="calc-block">
+        <div class="calc-label"><span class="calc-badge" id="calc-buyers-badge">150</span> people buy monthly using the Obsidian Method</div>
+        <div class="calc-slider-wrap">
+          <input type="range" min="0" max="2500" value="150" step="10" class="calc-slider" id="calc-buyers">
+        </div>
+        <div class="calc-scale"><span>0</span><span>500</span><span>1500</span><span>2500</span></div>
       </div>
-      <div class="mp-card" style="text-align:center;border-color:rgba(255,255,255,0.06)">
-        <span class="mp-card-icon" style="font-size:22px;color:rgba(255,255,255,0.3)">▲</span>
-        <div class="mp-card-title" style="font-size:15px;margin-bottom:8px">Facebook</div>
-        <div style="font-family:var(--font);font-size:24px;font-weight:800;color:var(--red);margin-bottom:6px">Community</div>
-        <div class="mp-card-text">Warm trust audience. Highest conversion rate. Buyers return repeatedly. WhatsApp bridge multiplies.</div>
-      </div>
-      <div class="mp-card" style="text-align:center;border-color:rgba(255,255,255,0.06)">
-        <span class="mp-card-icon" style="font-size:22px;color:rgba(255,255,255,0.3)">⬡</span>
-        <div class="mp-card-title" style="font-size:15px;margin-bottom:8px">YouTube</div>
-        <div style="font-family:var(--font);font-size:24px;font-weight:800;color:var(--red);margin-bottom:6px">AdSense + Affiliate</div>
-        <div class="mp-card-text">High-RPM Tier 1 targeting. AI production. Videos earn for 2-3 years after upload.</div>
+
+      <div class="calc-result-block">
+        <div class="calc-result-label">Monthly Profit</div>
+        <div class="calc-result-value" id="calc-result">₹74,850</div>
+        <div class="calc-note">*This can be your monthly profit for a one-time ₹999 investment in the Obsidian Method.</div>
+        <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="calc-cta">Claim Your Profit Now →</a>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Final CTA -->
-    <div class="mp-cta-bar" style="border-color:rgba(232,0,13,0.15);background:rgba(232,0,13,0.04)">
-      <div class="mp-cta-text">
-        <div class="mp-cta-title">The Complete Obsidian Method — One Payment. Lifetime Access.</div>
-        <div class="mp-cta-sub">Pinterest + Facebook + YouTube. All three systems. All six resources. No renewals. No upsells.</div>
-      </div>
-      <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="mp-cta-btn">Get Instant Access →</a>
+
+
+<section id="faceless-blueprint">
+  <div class="fbp-container">
+    <div class="fbp-header">
+      <span class="s-label reveal">The Complete System</span>
+      <h2 class="s-h2 reveal">The Faceless<br/>Business <span style="color:var(--red)">Blueprint.</span></h2>
+      <p class="s-sub reveal" style="margin:0 auto">Three platforms. One connected architecture. Watch the system assemble itself as you scroll.</p>
     </div>
 
+    <div class="fbp-canvas-wrap">
+      <canvas id="fbp-canvas"></canvas>
+      <div class="fbp-labels" id="fbp-labels"></div>
+    </div>
+
+    <div class="fbp-grid">
+      <div class="fbp-item"><div class="fbp-item-num">01</div><div class="fbp-item-title">No Face Required</div><div class="fbp-item-text">Every platform in the system operates without a personal brand, camera, or voice reveal.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">02</div><div class="fbp-item-title">Zero Ad Spend</div><div class="fbp-item-text">Pinterest, Facebook, and YouTube all generate organic reach without paid promotion.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">03</div><div class="fbp-item-title">Compounding Design</div><div class="fbp-item-text">Content published today continues generating income months and years into the future.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">04</div><div class="fbp-item-title">Multiple Income Layers</div><div class="fbp-item-text">Affiliate commissions, AdSense, community sales, and digital products — stacked simultaneously.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">05</div><div class="fbp-item-title">Tier 1 Targeting</div><div class="fbp-item-text">Content engineered for UK, US, Canada, and Australia audiences — the highest value markets.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">06</div><div class="fbp-item-title">One Connected System</div><div class="fbp-item-text">Each platform feeds the others. Traffic, trust, and authority compound across the full architecture.</div></div>
+    </div>
   </div>
 </section>
 
@@ -2258,22 +3273,7 @@ body::before {
 </section>
 
 <!-- VAULT -->
-<div class="divider"></div>
-<!-- PLATFORMS -->
-<section id="platforms">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <span class="s-label">The Obsidian Method</span>
-      <h2 class="s-h2 scene-slide-right">Three Platforms.<br/>One System.</h2>
-      <p class="s-sub" style="margin:0 auto">The method operates across three discovery platforms simultaneously. Each one compounds. Each one works without paid promotion.</p>
-    </div>
-    <div class="plat-grid">
-      <div class="plat-card reveal d1 glass-stack-card"><img src="" class="plat-icon" alt="Pinterest"/><div class="plat-title">Pinterest</div><div class="plat-desc">A visual discovery engine that reaches people actively searching for solutions. One pin can generate consistent traffic for months — often years — after publication.</div></div>
-      <div class="plat-card reveal d2 glass-stack-card"><img src="" class="plat-icon" alt="Facebook"/><div class="plat-title">Facebook</div><div class="plat-desc">Groups and pages that build genuine community. Organic reach on Facebook rewards consistency and value — not advertising spend.</div></div>
-      <div class="plat-card reveal d3 glass-stack-card"><img src="data:image/jpeg;base64,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" class="plat-icon" alt="YouTube"/><div class="plat-title">YouTube</div><div class="plat-desc">Faceless video content that builds passive viewership. No camera required. AI-assisted production. Content that earns long after it is published.</div></div>
-    </div>
-  </div>
-</section>
+
 
 <div class="divider"></div>
 
@@ -2433,16 +3433,16 @@ body::before {
       <h2 class="s-h2">Frequently Asked<br/>Questions.</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-q">Who is The Obsidian Method designed for?<span class="faq-icon">+</span></button><div class="faq-a">The system is designed for beginners, students, working professionals, freelancers, and creators who want to build an organic income stream without prior experience, existing followers, or advertising budgets.</div></div>
-      <div class="faq-item"><button class="faq-q">Do I need previous experience?<span class="faq-icon">+</span></button><div class="faq-a">None at all. The Obsidian Method starts from complete zero and guides you through every step clearly. No assumptions are made about what you already know.</div></div>
-      <div class="faq-item"><button class="faq-q">Do I need to spend money on ads?<span class="faq-icon">+</span></button><div class="faq-a">No. The entire system is built on organic reach across Pinterest, Facebook, and YouTube. No advertising budget is required at any stage.</div></div>
-      <div class="faq-item"><button class="faq-q">Do I need a large following?<span class="faq-icon">+</span></button><div class="faq-a">No existing audience is required. The platforms taught within the method are discovery platforms — they surface content to relevant audiences automatically.</div></div>
-      <div class="faq-item"><button class="faq-q">Do I need to show my face or use a camera?<span class="faq-icon">+</span></button><div class="faq-a">No. The method is designed to work with complete anonymity. Camera, voice, and personal branding are entirely optional — not requirements.</div></div>
-      <div class="faq-item"><button class="faq-q">How long does it take to see results?<span class="faq-icon">+</span></button><div class="faq-a">Results depend entirely on consistency and application. Members who follow the system diligently begin to see organic traffic within the first two to four weeks.</div></div>
-      <div class="faq-item"><button class="faq-q">What is the time commitment required?<span class="faq-icon">+</span></button><div class="faq-a">The system is designed to be manageable alongside existing commitments. Initial setup requires focused time. Once operational, daily maintenance is minimal.</div></div>
-      <div class="faq-item"><button class="faq-q">Is lifetime access included?<span class="faq-icon">+</span></button><div class="faq-a">Yes. A single payment provides permanent access — including all future updates, new modules, and additional resources added at any point.</div></div>
-      <div class="faq-item"><button class="faq-q">What platforms does the method use?<span class="faq-icon">+</span></button><div class="faq-a">Pinterest, Facebook, and YouTube. Three distinct discovery platforms, each with different audience behaviours, combined into one cohesive system.</div></div>
-      <div class="faq-item"><button class="faq-q">Do I need a laptop or special equipment?<span class="faq-icon">+</span></button><div class="faq-a">A smartphone is sufficient to begin. No laptop, camera, microphone, or specialist software is required to operate the system.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Who is The Obsidian Method designed for?</span><span class="faq-icon">+</span></button><div class="faq-a">The system is designed for beginners, students, working professionals, freelancers, and creators who want to build an organic income stream without prior experience, existing followers, or advertising budgets.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need previous experience?</span><span class="faq-icon">+</span></button><div class="faq-a">None at all. The Obsidian Method starts from complete zero and guides you through every step clearly. No assumptions are made about what you already know.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need to spend money on ads?</span><span class="faq-icon">+</span></button><div class="faq-a">No. The entire system is built on organic reach across Pinterest, Facebook, and YouTube. No advertising budget is required at any stage.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need a large following?</span><span class="faq-icon">+</span></button><div class="faq-a">No existing audience is required. The platforms taught within the method are discovery platforms — they surface content to relevant audiences automatically.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need to show my face or use a camera?</span><span class="faq-icon">+</span></button><div class="faq-a">No. The method is designed to work with complete anonymity. Camera, voice, and personal branding are entirely optional — not requirements.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">How long does it take to see results?</span><span class="faq-icon">+</span></button><div class="faq-a">Results depend entirely on consistency and application. Members who follow the system diligently begin to see organic traffic within the first two to four weeks.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">What is the time commitment required?</span><span class="faq-icon">+</span></button><div class="faq-a">The system is designed to be manageable alongside existing commitments. Initial setup requires focused time. Once operational, daily maintenance is minimal.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Is lifetime access included?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes. A single payment provides permanent access — including all future updates, new modules, and additional resources added at any point.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">What platforms does the method use?</span><span class="faq-icon">+</span></button><div class="faq-a">Pinterest, Facebook, and YouTube. Three distinct discovery platforms, each with different audience behaviours, combined into one cohesive system.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need a laptop or special equipment?</span><span class="faq-icon">+</span></button><div class="faq-a">A smartphone is sufficient to begin. No laptop, camera, microphone, or specialist software is required to operate the system.</div></div>
     </div>
   </div>
 </section>
@@ -3617,6 +4617,502 @@ document.querySelectorAll('.img-blend').forEach((img, i) => {
       }, { passive: true });
     }
   });
+})();
+
+
+// ── FACELESS BUSINESS MODEL BLUEPRINT ANIMATION ──────────────
+(function(){
+  const canvas = document.getElementById('fbp-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const section = document.getElementById('faceless-blueprint');
+  const labelsContainer = document.getElementById('fbp-labels');
+
+  let W, H, progress = 0;
+
+  function resize(){
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = 460;
+    if(window.innerWidth <= 768) H = canvas.height = 340;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Node positions (relative 0-1)
+  const nodes = [
+    { x:0.15, y:0.25, label:'Pinterest', sub:'Traffic Engine' },
+    { x:0.5,  y:0.12, label:'Content Hub', sub:'Central System' },
+    { x:0.85, y:0.25, label:'Facebook', sub:'Trust Community' },
+    { x:0.15, y:0.75, label:'Affiliate', sub:'Commission Layer' },
+    { x:0.5,  y:0.88, label:'YouTube', sub:'Faceless Channel' },
+    { x:0.85, y:0.75, label:'Income', sub:'Compounding Result' },
+  ];
+
+  // Connections between nodes (indexes)
+  const edges = [
+    [0,1],[1,2],[0,3],[1,4],[2,5],[3,4],[4,5],[0,4],[2,4]
+  ];
+
+  // Create label divs
+  const labelEls = nodes.map((n, i) => {
+    const el = document.createElement('div');
+    el.className = 'fbp-node-label';
+    el.innerHTML = n.label + '<span class="sub">' + n.sub + '</span>';
+    labelsContainer.appendChild(el);
+    return el;
+  });
+
+  function positionLabels(){
+    nodes.forEach((n, i) => {
+      labelEls[i].style.left = (n.x * 100) + '%';
+      labelEls[i].style.top = (n.y * 100) + '%';
+    });
+  }
+  positionLabels();
+  window.addEventListener('resize', positionLabels);
+
+  function draw(p){
+    ctx.clearRect(0, 0, W, H);
+
+    // Grid background
+    ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+    ctx.lineWidth = 0.5;
+    for(let gx = 0; gx < W; gx += 40){
+      ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
+    }
+    for(let gy = 0; gy < H; gy += 40){
+      ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+    }
+
+    // Draw edges progressively
+    edges.forEach((edge, i) => {
+      const edgeStart = i / edges.length;
+      const edgeP = Math.max(0, Math.min(1, (p - edgeStart * 0.6) / (0.6 / edges.length)));
+      if(edgeP <= 0) return;
+
+      const a = nodes[edge[0]], b = nodes[edge[1]];
+      const x1 = a.x * W, y1 = a.y * H;
+      const x2 = b.x * W, y2 = b.y * H;
+      const cx = x1 + (x2 - x1) * edgeP;
+      const cy = y1 + (y2 - y1) * edgeP;
+
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(cx, cy);
+      ctx.strokeStyle = 'rgba(255,255,255,0.14)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      if(edgeP < 1){
+        ctx.beginPath();
+        ctx.arc(cx, cy, 2, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(232,0,13,0.9)';
+        ctx.fill();
+      }
+    });
+
+    // Draw nodes
+    nodes.forEach((n, i) => {
+      const nodeP = Math.max(0, Math.min(1, (p - 0.55) * 3));
+      if(nodeP <= 0){ labelEls[i].classList.remove('lit'); return; }
+
+      const x = n.x * W, y = n.y * H;
+
+      // outer ring
+      ctx.beginPath();
+      ctx.arc(x, y, 14, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(255,255,255,${0.15 * nodeP})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // inner dot
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(232,0,13,${nodeP})`;
+      ctx.fill();
+
+      // pulse
+      const pulse = ((Date.now()/1000 + i*0.4) % 2) / 2;
+      ctx.beginPath();
+      ctx.arc(x, y, 14 + pulse*14, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(232,0,13,${0.15*(1-pulse)*nodeP})`;
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
+
+      if(nodeP > 0.5){
+        labelEls[i].classList.add('lit');
+      } else {
+        labelEls[i].classList.remove('lit');
+      }
+    });
+  }
+
+  function updateProgress(){
+    const rect = section.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height * 0.7)));
+    progress = p;
+    draw(p);
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  setInterval(() => { if(progress > 0.5) draw(progress); }, 60);
+  updateProgress();
+
+  // Grid item reveal
+  const fbpObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        document.querySelectorAll('.fbp-item').forEach((el,i) => {
+          setTimeout(() => el.classList.add('fbp-visible'), i*80);
+        });
+        fbpObs.disconnect();
+      }
+    });
+  }, { threshold:0.2 });
+  const grid = document.querySelector('.fbp-grid');
+  if(grid) fbpObs.observe(grid);
+})();
+
+
+// ============================================
+// LIVE ANIMATED PLATFORMS
+// ============================================
+(function(){
+
+  // Reveal on scroll
+  const cards = ['lp-card-pin','lp-card-fb','lp-card-yt'];
+  const lpObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        cards.forEach((id,i) => {
+          const el = document.getElementById(id);
+          if(el) setTimeout(()=>el.classList.add('lp-visible'), i*150);
+        });
+        lpObs.disconnect();
+      }
+    });
+  }, {threshold:0.15});
+  const section = document.getElementById('live-platforms');
+  if(section) lpObs.observe(section);
+
+  // ── PINTEREST CANVAS: pins flowing outward ──
+  (function(){
+    const c = document.getElementById('lp-canvas-pin');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    let W,H,t=0;
+    function resize(){ W=c.width=c.offsetWidth; H=c.height=c.offsetHeight; }
+    resize(); window.addEventListener('resize',resize);
+
+    const pins = [];
+    for(let i=0;i<8;i++){
+      pins.push({ a: i*(Math.PI*2/8), r:0, speed:0.4+Math.random()*0.3, size:2+Math.random()*2 });
+    }
+
+    function draw(){
+      t+=0.02;
+      ctx.clearRect(0,0,W,H);
+      const cx=W/2, cy=H/2;
+
+      // center P badge
+      ctx.beginPath();
+      ctx.arc(cx,cy,18,0,Math.PI*2);
+      ctx.fillStyle='rgba(230,0,35,0.15)';
+      ctx.fill();
+      ctx.strokeStyle='rgba(230,0,35,0.6)';
+      ctx.lineWidth=1.5;
+      ctx.stroke();
+      ctx.font='bold 16px Georgia';
+      ctx.fillStyle='rgba(230,0,35,0.9)';
+      ctx.textAlign='center';
+      ctx.textBaseline='middle';
+      ctx.fillText('P',cx,cy);
+
+      pins.forEach(p=>{
+        p.r += p.speed;
+        if(p.r > Math.max(W,H)*0.55) p.r = 0;
+        const x = cx + Math.cos(p.a)*p.r;
+        const y = cy + Math.sin(p.a)*p.r*0.65;
+        const op = Math.max(0, 1 - p.r/(Math.max(W,H)*0.55));
+
+        // trail line
+        ctx.beginPath();
+        ctx.moveTo(cx,cy);
+        ctx.lineTo(x,y);
+        ctx.strokeStyle = `rgba(230,0,35,${0.08*op})`;
+        ctx.lineWidth=0.5;
+        ctx.stroke();
+
+        // pin dot
+        ctx.beginPath();
+        ctx.arc(x,y,p.size,0,Math.PI*2);
+        ctx.fillStyle=`rgba(230,0,35,${0.7*op})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ── FACEBOOK CANVAS: network nodes connecting ──
+  (function(){
+    const c = document.getElementById('lp-canvas-fb');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    let W,H,t=0;
+    function resize(){ W=c.width=c.offsetWidth; H=c.height=c.offsetHeight; }
+    resize(); window.addEventListener('resize',resize);
+
+    const nodes = [];
+    for(let i=0;i<10;i++){
+      nodes.push({
+        x: Math.random(), y: Math.random(),
+        vx: (Math.random()-0.5)*0.0015,
+        vy: (Math.random()-0.5)*0.0015,
+      });
+    }
+
+    function draw(){
+      t+=0.01;
+      ctx.clearRect(0,0,W,H);
+
+      nodes.forEach(n=>{
+        n.x += n.vx; n.y += n.vy;
+        if(n.x<0||n.x>1) n.vx*=-1;
+        if(n.y<0||n.y>1) n.vy*=-1;
+      });
+
+      // connections
+      for(let i=0;i<nodes.length;i++){
+        for(let j=i+1;j<nodes.length;j++){
+          const a=nodes[i], b=nodes[j];
+          const dx=(a.x-b.x)*W, dy=(a.y-b.y)*H;
+          const dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist < W*0.35){
+            ctx.beginPath();
+            ctx.moveTo(a.x*W,a.y*H);
+            ctx.lineTo(b.x*W,b.y*H);
+            ctx.strokeStyle=`rgba(24,119,242,${0.15*(1-dist/(W*0.35))})`;
+            ctx.lineWidth=0.6;
+            ctx.stroke();
+          }
+        }
+      }
+      // nodes
+      nodes.forEach((n,i)=>{
+        const pulse = (Math.sin(t*2+i)+1)/2;
+        ctx.beginPath();
+        ctx.arc(n.x*W, n.y*H, 2+pulse*1.5, 0, Math.PI*2);
+        ctx.fillStyle=`rgba(24,119,242,${0.5+pulse*0.4})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ── YOUTUBE CANVAS: play button pulse + waveform ──
+  (function(){
+    const c = document.getElementById('lp-canvas-yt');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    let W,H,t=0;
+    function resize(){ W=c.width=c.offsetWidth; H=c.height=c.offsetHeight; }
+    resize(); window.addEventListener('resize',resize);
+
+    function draw(){
+      t+=0.03;
+      ctx.clearRect(0,0,W,H);
+      const cx=W/2, cy=H/2;
+
+      // pulsing rings
+      for(let i=0;i<3;i++){
+        const phase = (t*0.5 + i*0.7) % 2;
+        const r = 20 + phase*35;
+        const op = Math.max(0, 0.4*(1-phase/2));
+        ctx.beginPath();
+        ctx.arc(cx,cy,r,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(232,0,13,${op})`;
+        ctx.lineWidth=1;
+        ctx.stroke();
+      }
+
+      // play button
+      ctx.beginPath();
+      ctx.arc(cx,cy,22,0,Math.PI*2);
+      ctx.fillStyle='rgba(232,0,13,0.9)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(cx-6,cy-10);
+      ctx.lineTo(cx-6,cy+10);
+      ctx.lineTo(cx+10,cy);
+      ctx.closePath();
+      ctx.fillStyle='#fff';
+      ctx.fill();
+
+      // waveform bars below
+      const barCount=16;
+      const barW = W*0.5/barCount;
+      const startX = cx - W*0.25;
+      for(let i=0;i<barCount;i++){
+        const h = 4 + Math.abs(Math.sin(t*3+i*0.5))*14;
+        ctx.fillStyle=`rgba(232,0,13,${0.3+0.3*Math.abs(Math.sin(t*3+i*0.5))})`;
+        ctx.fillRect(startX+i*barW, cy+40-h/2, barW*0.6, h);
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ── BACKGROUND CANVAS: subtle connecting particles across whole section ──
+  (function(){
+    const c = document.getElementById('lp-bg-canvas');
+    if(!c) return;
+    const ctx = c.getContext('2d');
+    let W,H;
+    function resize(){ W=c.width=section.offsetWidth; H=c.height=section.offsetHeight; }
+    resize(); window.addEventListener('resize',resize);
+
+    const pts=[];
+    for(let i=0;i<40;i++){
+      pts.push({
+        x:Math.random()*2000, y:Math.random()*1200,
+        vx:(Math.random()-0.5)*0.15, vy:(Math.random()-0.5)*0.1,
+      });
+    }
+    let raf;
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      pts.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+        if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,0.8,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,0.06)';
+        ctx.fill();
+      });
+      raf = requestAnimationFrame(draw);
+    }
+    const bgObs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) draw();
+        else cancelAnimationFrame(raf);
+      });
+    },{threshold:0.01});
+    bgObs.observe(section);
+  })();
+
+})();
+
+
+// ============================================
+// LIVE NOTIFICATION TOASTS
+// ============================================
+(function(){
+  const container = document.getElementById('notif-container');
+  if(!container) return;
+
+  const names = ['Akhil Mohan','Sarath Kumar','Anjali Menon','Rahul Nair','Fathima Beevi','Vishnu Prasad','Devika Suresh','Arjun Krishna','Meera Pillai','Nikhil Varma','Sneha Rajan','Karthik Menon'];
+  const amounts = ['₹3,890','₹2,140','₹5,600','₹1,299','₹4,750','₹2,999','₹6,200','₹1,890','₹3,450','₹7,100','₹2,499','₹4,120'];
+  const actions = ['just joined Obsidian Club','just joined Obsidian Club','made his first sale','earned their first commission','completed the 30-day challenge','unlocked lifetime access','made a sale on Pinterest','converted a Facebook lead'];
+  const times = ['just now','2 minutes ago','5 minutes ago','12 minutes ago','24 minutes ago','1 hour ago','2 hours ago'];
+
+  function randomOf(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function showNotif(){
+    const name = randomOf(names);
+    const amount = randomOf(amounts);
+    const action = randomOf(actions);
+    const time = randomOf(times);
+
+    const toast = document.createElement('div');
+    toast.className = 'notif-toast';
+    toast.innerHTML = `
+      <div class="notif-icon"><svg viewBox="0 0 22 22" fill="none">
+<path d="M11 1L13.09 3.26L16.18 2.5L16.9 5.6L20 6.32L19.24 9.41L21.5 11.5L19.24 13.59L20 16.68L16.9 17.4L16.18 20.5L13.09 19.74L11 22L8.91 19.74L5.82 20.5L5.1 17.4L2 16.68L2.76 13.59L0.5 11.5L2.76 9.41L2 6.32L5.1 5.6L5.82 2.5L8.91 3.26L11 1Z" fill="#E8000D"/>
+<path d="M7.5 11L9.8 13.3L14.5 8.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+      <div class="notif-text">
+        <div class="notif-title">${name} <strong>${action.includes('sale') || action.includes('commission') ? amount : ''}</strong></div>
+        <div class="notif-sub">${action} · ${time}</div>
+      </div>
+    `;
+    container.innerHTML = '';
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => toast.classList.add('notif-show'));
+    });
+
+    setTimeout(() => {
+      toast.classList.remove('notif-show');
+      toast.classList.add('notif-hide');
+    }, 4500);
+  }
+
+  // First notification after 3s, then every 8-14s
+  setTimeout(showNotif, 3000);
+  setInterval(() => {
+    showNotif();
+  }, 8000 + Math.random()*6000);
+})();
+
+// ============================================
+// PROFIT CALCULATOR
+// ============================================
+(function(){
+  const priceSlider = document.getElementById('calc-price');
+  const buyersSlider = document.getElementById('calc-buyers');
+  const priceBadge = document.getElementById('calc-price-badge');
+  const buyersBadge = document.getElementById('calc-buyers-badge');
+  const resultEl = document.getElementById('calc-result');
+  if(!priceSlider || !buyersSlider) return;
+
+  function formatINR(num){
+    return '₹' + num.toLocaleString('en-IN');
+  }
+
+  function update(){
+    const price = parseInt(priceSlider.value);
+    const buyers = parseInt(buyersSlider.value);
+    const profit = price * buyers;
+    priceBadge.textContent = formatINR(price);
+    buyersBadge.textContent = buyers.toLocaleString('en-IN');
+    resultEl.textContent = formatINR(profit);
+  }
+
+  priceSlider.addEventListener('input', update);
+  buyersSlider.addEventListener('input', update);
+  update();
+})();
+
+
+// ============================================
+// PROFIT CALCULATOR
+// ============================================
+(function(){
+  const priceSlider = document.getElementById('calc-price');
+  const buyersSlider = document.getElementById('calc-buyers');
+  const priceBadge = document.getElementById('calc-price-badge');
+  const buyersBadge = document.getElementById('calc-buyers-badge');
+  const resultEl = document.getElementById('calc-result');
+  if(!priceSlider || !buyersSlider) return;
+
+  function formatINR(num){
+    return '₹' + num.toLocaleString('en-IN');
+  }
+  function update(){
+    const price = parseInt(priceSlider.value);
+    const buyers = parseInt(buyersSlider.value);
+    const profit = price * buyers;
+    priceBadge.textContent = formatINR(price);
+    buyersBadge.textContent = buyers.toLocaleString('en-IN');
+    resultEl.textContent = formatINR(profit);
+  }
+  priceSlider.addEventListener('input', update);
+  buyersSlider.addEventListener('input', update);
+  update();
 })();
 
 </script>
