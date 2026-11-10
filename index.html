@@ -117,6 +117,28 @@ nav.scrolled{background:rgba(8,8,8,0.9);backdrop-filter:blur(40px);-webkit-backd
 .hero-left .hero-ctas{animation-delay:1.05s}
 .hero-left .hero-checks{animation-delay:1.2s}
 @media(max-width:960px){.hero-left .hero-video-wrap{margin:28px auto 0}}
+
+/* THE OBSIDIAN PAGE METHOD */
+#page-method{background:var(--bg2);overflow:hidden;text-align:center}
+.pm-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:760px;height:420px;background:radial-gradient(ellipse at center,rgba(232,0,13,0.14),transparent 70%);filter:blur(50px);pointer-events:none}
+.pm-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto}
+.pm-new{display:inline-flex;align-items:center;gap:10px;font-family:var(--font);font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);border:1px solid rgba(232,0,13,0.25);background:rgba(232,0,13,0.04);padding:8px 18px;border-radius:2px;margin-bottom:26px}
+.pm-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+.pm-chips{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:30px 0 56px}
+.pm-chips span{font-family:var(--font);font-size:12px;letter-spacing:0.06em;color:var(--muted);border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);padding:11px 20px;border-radius:40px}
+.pm-chips b{color:var(--white);font-weight:700}
+.pm-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+.pm-card{width:calc(33.333% - 12px);text-align:left;background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:30px 26px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;overflow:hidden;transition:transform 0.5s var(--ease),border-color 0.4s ease,background 0.4s ease}
+.pm-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);transform:scaleX(0);transition:transform 0.5s var(--ease)}
+.pm-card:hover{transform:translateY(-5px);border-color:rgba(232,0,13,0.25);background:rgba(255,255,255,0.04)}
+.pm-card:hover::before{transform:scaleX(1)}
+.pm-num{font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:0.12em;color:var(--red);margin-bottom:18px}
+.pm-card h3{font-family:var(--font);font-size:18px;font-weight:700;letter-spacing:-0.01em;margin-bottom:10px}
+.pm-card p{font-size:13.5px;color:var(--muted);line-height:1.75}
+.pm-cta{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:18px}
+.pm-note{font-size:11.5px;color:var(--muted2);max-width:520px;line-height:1.7}
+@media(max-width:960px){.pm-card{width:calc(50% - 9px)}}
+@media(max-width:640px){.pm-card{width:100%}.pm-chips{margin:24px 0 36px}}
 @media(prefers-reduced-motion:reduce){.hero-ctas,.hero-checks,.hero-video{animation:none;opacity:1}}
 .hero-video{transform:none!important;aspect-ratio:16/9;width:100%}
 .hero-video iframe,.hv-poster{aspect-ratio:16/9}
@@ -1858,7 +1880,7 @@ body::before {
 }
 .lp-card.pin:hover{border-color:rgba(230,0,35,0.3)}
 .lp-card.fb:hover{border-color:rgba(24,119,242,0.3)}
-.lp-card.yt:hover{border-color:rgba(232,0,13,0.3)}
+.lp-card.pm:hover{border-color:rgba(232,0,13,0.3)}
 
 /* Live canvas per card */
 .lp-canvas-wrap{
@@ -2796,7 +2818,7 @@ body::before {
   <div class="hero-left">
     <div class="hero-badge"><span class="bdot"></span>Private Digital System</div>
     <h1 class="hero-h1">The System<br/>Behind <em>Silent</em><br/>Online Income.</h1>
-    <p class="hero-sub">Most people search for years. The Obsidian Method is a structured organic income system built on three platforms — without ads, without followers, without showing your face.</p>
+    <p class="hero-sub">Most people search for years. The Obsidian Method is a structured organic income system built on Pinterest and Facebook — without ads, without followers, without showing your face.</p>
     <!-- HERO VIDEO: replace YOUTUBE_VIDEO_ID in the script near the bottom of this file -->
     <div class="hero-video-wrap">
     <div class="hero-video" id="heroVideo">
@@ -2856,246 +2878,37 @@ body::before {
 </section>
 
 <div class="divider"></div>
-<!-- COURSE ASSETS -->
-<section id="assets" style="padding:100px 60px;background:var(--bg2);position:relative;overflow:hidden">
-
-  <!-- Background glow -->
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(232,0,13,0.04) 0%,transparent 65%);pointer-events:none"></div>
-
-  <div class="container" style="position:relative;z-index:1">
-
-    <!-- Section header — premium highlighted -->
-    <div class="reveal" style="text-align:center;margin-bottom:64px">
-      <div style="display:inline-block;background:rgba(232,0,13,0.06);border:1px solid rgba(232,0,13,0.2);border-radius:4px;padding:10px 28px;margin-bottom:20px">
-        <span style="font-family:var(--font);font-size:10px;font-weight:700;letter-spacing:0.28em;color:var(--red);text-transform:uppercase">Everything Included — One Payment</span>
-      </div>
-      <h2 style="font-family:var(--font);font-size:clamp(30px,4vw,54px);font-weight:800;letter-spacing:-0.03em;line-height:1.06;margin-bottom:16px">
-        Six Premium Resources.<br/><span style="color:var(--red)">All Yours. Forever.</span>
-      </h2>
-      <p style="font-size:16px;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.8">Every resource below is included with your membership. No upsells. No upgrades. No extra fees.</p>
-    </div>
-
-    <!-- Assets grid -->
-    <div class="assets-grid">
-
-      <div class="asset-card scene-fade-up d1">
-        <div class="asset-hl">CORE</div>
-        <div class="asset-num">01</div>
-        <span class="asset-icon">◈</span>
-        <div class="asset-title">Niche Research Guide</div>
-        <div class="asset-desc">25+ proven niches, platform breakdown, keyword libraries, and affiliate network analysis. Eliminates months of guesswork before you start.</div>
-        <div class="asset-pills">
-          <span class="asset-pill">8 Pages</span>
-          <span class="asset-pill">25+ Niches</span>
-          <span class="asset-pill">3 Networks</span>
-        </div>
-      </div>
-
-      <div class="asset-card scene-fade-up d2">
-        <div class="asset-hl">CORE</div>
-        <div class="asset-num">02</div>
-        <span class="asset-icon">▲</span>
-        <div class="asset-title">30-Day Content Calendar</div>
-        <div class="asset-desc">Complete day-by-day posting plan for Pinterest and Facebook. Every post has a topic, caption idea, platform, and strategic purpose — ready to execute immediately.</div>
-        <div class="asset-pills">
-          <span class="asset-pill">30 Days</span>
-          <span class="asset-pill">2 Platforms</span>
-          <span class="asset-pill">4 Themes</span>
-        </div>
-      </div>
-
-      <div class="asset-card scene-fade-up d3">
-        <div class="asset-hl">CORE</div>
-        <div class="asset-num">03</div>
-        <span class="asset-icon">⬡</span>
-        <div class="asset-title">Winning Product List</div>
-        <div class="asset-desc">25 validated digital products across 5 niches — commission rates, platform recommendations, and exactly why each one converts. No guessing required.</div>
-        <div class="asset-pills">
-          <span class="asset-pill">25 Products</span>
-          <span class="asset-pill">5 Niches</span>
-          <span class="asset-pill">50-75% Commission</span>
-        </div>
-      </div>
-
-      <div class="asset-card scene-fade-up d4">
-        <div class="asset-hl">CORE</div>
-        <div class="asset-num">04</div>
-        <span class="asset-icon">◎</span>
-        <div class="asset-title">Mindset &amp; Self Development Blueprint</div>
-        <div class="asset-desc">7 core pillars, 21-day discipline challenge, daily habit tracker, weekly review template, and the Obsidian Manifesto. The mental architecture behind consistent execution.</div>
-        <div class="asset-pills">
-          <span class="asset-pill">7 Pillars</span>
-          <span class="asset-pill">21-Day Challenge</span>
-          <span class="asset-pill">Daily Tracker</span>
-        </div>
-      </div>
-
-      <div class="asset-card asset-card-highlight scene-fade-up d5">
-        <div class="asset-hl asset-hl-gold">NEW</div>
-        <div class="asset-num">05</div>
-        <span class="asset-icon">◇</span>
-        <div class="asset-title">30-Day Action Roadmap</div>
-        <div class="asset-desc">A day-by-day checklist from Day 1 to Day 30. Members never wonder what to do next — every single action is mapped out in precise sequence.</div>
-        <div class="asset-pills">
-          <span class="asset-pill">30 Days</span>
-          <span class="asset-pill">Daily Checklist</span>
-          <span class="asset-pill">Zero Guesswork</span>
-        </div>
-      </div>
-
-      <div class="asset-card asset-card-highlight scene-fade-up d6">
-        <div class="asset-hl asset-hl-gold">NEW</div>
-        <div class="asset-num">06</div>
-        <span class="asset-icon">○</span>
-        <div class="asset-title">Obsidian AI Toolkit</div>
-        <div class="asset-desc">The best AI tools used in the Obsidian Method — what each tool does, free vs paid options, and the exact workflow for generating content in hours not days.</div>
-        <div class="asset-pills">
-          <span class="asset-pill">Best AI Tools</span>
-          <span class="asset-pill">Free vs Paid</span>
-          <span class="asset-pill">Full Workflow</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Bottom highlight bar -->
-    <div class="reveal" style="margin-top:56px">
-      <div style="background:rgba(232,0,13,0.05);border:1px solid rgba(232,0,13,0.15);border-radius:12px;padding:28px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
-        <div>
-          <div style="font-family:var(--font);font-size:18px;font-weight:700;color:var(--white);margin-bottom:4px">Everything above — included in one single payment.</div>
-          <div style="font-size:13px;color:var(--muted)">Six resources. Lifetime access. No renewals. No hidden fees. Yours permanently.</div>
-        </div>
-        <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" style="font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:0.12em;color:#ffffff;background:var(--red);padding:16px 36px;border-radius:4px;text-decoration:none;white-space:nowrap;box-shadow:0 0 32px rgba(232,0,13,0.3);text-transform:uppercase">Get Instant Access →</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-<div class="divider"></div>
-
 <!-- VIDEO METHOD SECTIONS -->
 
 
 <div class="divider"></div>
-<!-- FACELESS YOUTUBE AUTOMATION -->
-<section id="yt-auto">
-  <canvas id="yt-particles"></canvas>
-
-  <div class="yt-inner">
-
-    <!-- LEFT -->
-    <div class="yt-left" id="yt-left">
-      <div class="yt-tag"><span class="yt-tag-dot"></span>Obsidian Method · Module</div>
-
-      <h2 class="yt-headline">
-        Build Automated<br/>
-        <em>Faceless</em> YouTube<br/>
-        Channels.
-      </h2>
-
-      <p class="yt-desc">
-        Create scalable YouTube channels powered by AI workflows and automation. Build channels targeting high-value international audiences, optimize content for discoverability, and streamline production from idea to publishing.
-      </p>
-
-      <div class="yt-features">
-        <div class="yt-feat">
-          <div class="yt-feat-icon">✦</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">AI Script Generation</div>
-            <div class="yt-feat-desc">Efficient workflows for generating structured video scripts using AI tools.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">◎</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">AI Voiceovers</div>
-            <div class="yt-feat-desc">Natural-sounding narration without recording your own voice.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">▲</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">Video Editing Automation</div>
-            <div class="yt-feat-desc">Repeatable editing workflows to speed up production at scale.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">◈</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">SEO & Metadata Optimization</div>
-            <div class="yt-feat-desc">Optimize titles, descriptions, keywords, tags, and thumbnails for discoverability.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">$</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">High RPM Strategy</div>
-            <div class="yt-feat-desc">Select topics targeting high-value audiences in USA, Canada, UK, and Australia.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">⬡</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">AI Thumbnail Workflow</div>
-            <div class="yt-feat-desc">Professional thumbnails engineered to improve click-through rates.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">◇</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">YouTube Analytics</div>
-            <div class="yt-feat-desc">Track retention, CTR, watch time, and key metrics for continuous improvement.</div>
-          </div>
-        </div>
-        <div class="yt-feat">
-          <div class="yt-feat-icon">∞</div>
-          <div class="yt-feat-text">
-            <div class="yt-feat-title">2,000+ Creator Assets</div>
-            <div class="yt-feat-desc">Templates, prompts, workflows, design assets, and productivity resources included.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="yt-cta-row">
-        <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="yt-btn">
-          Explore The Method <span class="yt-btn-arrow">→</span>
-        </a>
-        <div class="yt-stat-tag">
-          <strong>Premium AI Workflow</strong>
-          Built for Long-Term Channel Growth
-        </div>
+<!-- THE OBSIDIAN PAGE METHOD -->
+<section id="page-method">
+  <div class="pm-glow"></div>
+  <div class="pm-inner">
+    <div class="pm-head">
+      <span class="pm-new reveal"><span class="pm-dot"></span>New · Included in The Obsidian Method</span>
+      <h2 class="s-h2 reveal">The Obsidian<br/><span style="color:var(--red)">Page Method.</span></h2>
+      <p class="s-sub reveal" style="margin:0 auto">A Facebook Page system built around about five minutes a day once it&rsquo;s set up. Multiple ways to earn from one Page.</p>
+      <div class="pm-chips reveal">
+        <span><b>5 min</b> a day to run</span>
+        <span><b>No</b> ad spend</span>
+        <span><b>No</b> extra investment</span>
       </div>
     </div>
 
-    <!-- RIGHT -->
-    <div class="yt-right" id="yt-right">
-      <div class="yt-img-wrap" id="yt-img-wrap">
-        <div class="yt-img-glow"></div>
-        <span class="yt-img-particle"></span>
-        <span class="yt-img-particle"></span>
-        <span class="yt-img-particle"></span>
-        <span class="yt-img-particle"></span>
-        <span class="yt-img-particle"></span>
-        <span class="yt-img-particle"></span>
-        <img
-          class="yt-img"
-          src=""
-          alt="AI Faceless YouTube Automation"
-          loading="lazy"
-          id="yt-img"
-        />
-      </div>
+    <div class="pm-grid">
+      <div class="pm-card reveal"><div class="pm-num">01</div><h3>Page Promotion</h3><p>Promote other pages and offers to the audience your Page builds.</p></div>
+      <div class="pm-card reveal"><div class="pm-num">02</div><h3>Brand Promotion</h3><p>Work with brands that want access to your Page&rsquo;s audience.</p></div>
+      <div class="pm-card reveal"><div class="pm-num">03</div><h3>Facebook Stars</h3><p>Earn from viewers who send Stars on eligible content, subject to Facebook&rsquo;s eligibility rules.</p></div>
+      <div class="pm-card reveal"><div class="pm-num">04</div><h3>Affiliate &amp; Digital Products</h3><p>Recommend or sell digital products to the people who follow your Page.</p></div>
+      <div class="pm-card reveal"><div class="pm-num">05</div><h3>Automated Selling</h3><p>Systems that keep promoting and selling with minimal daily effort.</p></div>
     </div>
 
-  </div>
-
-  <!-- Bottom stat bar -->
-  <div class="yt-bottom" id="yt-bottom">
-    <div class="yt-bottom-label">Obsidian Club · Faceless YouTube System</div>
-    <div class="yt-bottom-right">Premium AI Workflow · Built for Long-Term Channel Growth</div>
+    <div class="pm-cta reveal">
+      <a href="https://superprofile.bio/vp/built-for-people-who-are-done-waiting-" target="_blank" class="hero-btn-primary">Get Access <span>→</span></a>
+      <p class="pm-note">Each route depends on your Page meeting the platform&rsquo;s eligibility rules. Results vary. Individual results are not guaranteed.</p>
+    </div>
   </div>
 </section>
 
@@ -3132,7 +2945,7 @@ body::before {
   <div class="lp-container">
     <div class="lp-header">
       <span class="s-label reveal">The Obsidian Method</span>
-      <h2 class="s-h2 reveal">Three Platforms.<br/>One <span style="color:var(--red)">Living</span> System.</h2>
+      <h2 class="s-h2 reveal">Three Methods.<br/>One <span style="color:var(--red)">Living</span> System.</h2>
       <p class="s-sub reveal" style="margin:0 auto">Watch the system work in real time. Each platform compounds. Each one runs without paid promotion.</p>
     </div>
 
@@ -3168,17 +2981,17 @@ body::before {
         </div>
       </div>
 
-      <!-- YOUTUBE -->
-      <div class="lp-card yt" id="lp-card-yt">
+      <!-- OBSIDIAN PAGE METHOD -->
+      <div class="lp-card pm" id="lp-card-pm">
         <div class="lp-edge"></div>
-        <div class="lp-canvas-wrap"><canvas id="lp-canvas-yt"></canvas></div>
+        <div class="lp-canvas-wrap"><canvas id="lp-canvas-pm"></canvas></div>
         <div class="lp-body">
-          <div class="lp-title"><span class="lp-dot"></span>YouTube</div>
-          <div class="lp-desc">Faceless video content built with AI, targeting high-RPM Tier 1 audiences. Videos earn for years after upload.</div>
+          <div class="lp-title"><span class="lp-dot"></span>Obsidian Page Method</div>
+          <div class="lp-desc">A Facebook Page built around image content, with several ways to earn from one audience. Around five minutes a day once it&rsquo;s set up.</div>
           <div class="lp-stats">
-            <div><span class="lp-stat-num">18</span><span class="lp-stat-label">Modules</span></div>
-            <div><span class="lp-stat-num">$25</span><span class="lp-stat-label">Max CPM</span></div>
-            <div><span class="lp-stat-num">0</span><span class="lp-stat-label">Camera</span></div>
+            <div><span class="lp-stat-num">5 min</span><span class="lp-stat-label">Daily Upkeep</span></div>
+            <div><span class="lp-stat-num">5</span><span class="lp-stat-label">Income Routes</span></div>
+            <div><span class="lp-stat-num">&#8377;0</span><span class="lp-stat-label">Ad Spend</span></div>
           </div>
         </div>
       </div>
@@ -3234,7 +3047,7 @@ body::before {
     <div class="fbp-header">
       <span class="s-label reveal">The Complete System</span>
       <h2 class="s-h2 reveal">The Faceless<br/>Business <span style="color:var(--red)">Blueprint.</span></h2>
-      <p class="s-sub reveal" style="margin:0 auto">Three platforms. One connected architecture. Watch the system assemble itself as you scroll.</p>
+      <p class="s-sub reveal" style="margin:0 auto">Pinterest. Facebook. One connected architecture. Watch the system assemble itself as you scroll.</p>
     </div>
 
     <div class="fbp-canvas-wrap">
@@ -3244,9 +3057,9 @@ body::before {
 
     <div class="fbp-grid">
       <div class="fbp-item"><div class="fbp-item-num">01</div><div class="fbp-item-title">No Face Required</div><div class="fbp-item-text">Every platform in the system operates without a personal brand, camera, or voice reveal.</div></div>
-      <div class="fbp-item"><div class="fbp-item-num">02</div><div class="fbp-item-title">Zero Ad Spend</div><div class="fbp-item-text">Pinterest, Facebook, and YouTube all generate organic reach without paid promotion.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">02</div><div class="fbp-item-title">Zero Ad Spend</div><div class="fbp-item-text">Pinterest and Facebook both generate organic reach without paid promotion.</div></div>
       <div class="fbp-item"><div class="fbp-item-num">03</div><div class="fbp-item-title">Compounding Design</div><div class="fbp-item-text">Content published today continues generating income months and years into the future.</div></div>
-      <div class="fbp-item"><div class="fbp-item-num">04</div><div class="fbp-item-title">Multiple Income Layers</div><div class="fbp-item-text">Affiliate commissions, AdSense, community sales, and digital products — stacked simultaneously.</div></div>
+      <div class="fbp-item"><div class="fbp-item-num">04</div><div class="fbp-item-title">Multiple Income Layers</div><div class="fbp-item-text">Affiliate commissions, Facebook Stars, brand promotions, and digital products — stacked simultaneously.</div></div>
       <div class="fbp-item"><div class="fbp-item-num">05</div><div class="fbp-item-title">Tier 1 Targeting</div><div class="fbp-item-text">Content engineered for UK, US, Canada, and Australia audiences — the highest value markets.</div></div>
       <div class="fbp-item"><div class="fbp-item-num">06</div><div class="fbp-item-title">One Connected System</div><div class="fbp-item-text">Each platform feeds the others. Traffic, trust, and authority compound across the full architecture.</div></div>
     </div>
@@ -3393,7 +3206,7 @@ body::before {
         <div class="an-activity">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:11px;color:var(--muted);flex:1">Pinterest</span><div class="an-bar" style="flex:3"><div class="an-bar-fill" style="width:88%"></div></div></div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:11px;color:var(--muted);flex:1">Facebook</span><div class="an-bar" style="flex:3"><div class="an-bar-fill" style="width:74%;animation-delay:0.3s"></div></div></div>
-          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:11px;color:var(--muted);flex:1">YouTube</span><div class="an-bar" style="flex:3"><div class="an-bar-fill" style="width:62%;animation-delay:0.6s"></div></div></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:11px;color:var(--muted);flex:1">Page Method</span><div class="an-bar" style="flex:3"><div class="an-bar-fill" style="width:62%;animation-delay:0.6s"></div></div></div>
         </div>
       </div>
       <div class="an-note reveal">Decorative only. All metrics shown are illustrative. Individual results vary based on consistency and application.</div>
@@ -3505,13 +3318,13 @@ body::before {
     <div class="faq-list">
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Who is The Obsidian Method designed for?</span><span class="faq-icon">+</span></button><div class="faq-a">The system is designed for beginners, students, working professionals, freelancers, and creators who want to build an organic income stream without prior experience, existing followers, or advertising budgets.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need previous experience?</span><span class="faq-icon">+</span></button><div class="faq-a">None at all. The Obsidian Method starts from complete zero and guides you through every step clearly. No assumptions are made about what you already know.</div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need to spend money on ads?</span><span class="faq-icon">+</span></button><div class="faq-a">No. The entire system is built on organic reach across Pinterest, Facebook, and YouTube. No advertising budget is required at any stage.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need to spend money on ads?</span><span class="faq-icon">+</span></button><div class="faq-a">No. The entire system is built on organic reach across Pinterest and Facebook. No advertising budget is required at any stage.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need a large following?</span><span class="faq-icon">+</span></button><div class="faq-a">No existing audience is required. The platforms taught within the method are discovery platforms — they surface content to relevant audiences automatically.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need to show my face or use a camera?</span><span class="faq-icon">+</span></button><div class="faq-a">No. The method is designed to work with complete anonymity. Camera, voice, and personal branding are entirely optional — not requirements.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">How long does it take to see results?</span><span class="faq-icon">+</span></button><div class="faq-a">Results depend entirely on consistency and application. Members who follow the system diligently begin to see organic traffic within the first two to four weeks.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">What is the time commitment required?</span><span class="faq-icon">+</span></button><div class="faq-a">The system is designed to be manageable alongside existing commitments. Initial setup requires focused time. Once operational, daily maintenance is minimal.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Is lifetime access included?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes. A single payment provides permanent access — including all future updates, new modules, and additional resources added at any point.</div></div>
-      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">What platforms does the method use?</span><span class="faq-icon">+</span></button><div class="faq-a">Pinterest, Facebook, and YouTube. Three distinct discovery platforms, each with different audience behaviours, combined into one cohesive system.</div></div>
+      <div class="faq-item"><button class="faq-q"><span class="faq-q-text">What platforms does the method use?</span><span class="faq-icon">+</span></button><div class="faq-a">Pinterest and Facebook, plus the Obsidian Page Method, a Facebook Page system. Each works differently, and they are combined into one cohesive system.</div></div>
       <div class="faq-item"><button class="faq-q"><span class="faq-q-text">Do I need a laptop or special equipment?</span><span class="faq-icon">+</span></button><div class="faq-a">A smartphone is sufficient to begin. No laptop, camera, microphone, or specialist software is required to operate the system.</div></div>
     </div>
   </div>
@@ -4546,103 +4359,6 @@ document.querySelectorAll('.img-blend').forEach((img, i) => {
 });
 
 
-// ── FACELESS YOUTUBE SECTION ──────────────────────────
-(function(){
-  // Intersection Observer — reveal on enter
-  const targets = ['yt-left','yt-right','yt-bottom'];
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        e.target.classList.add('yt-visible');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  targets.forEach(id => {
-    const el = document.getElementById(id);
-    if(el) obs.observe(el);
-  });
-
-  // Mouse parallax on image
-  const section = document.getElementById('yt-auto');
-  const img = document.getElementById('yt-img');
-  if(section && img) {
-    section.addEventListener('mousemove', e => {
-      const rect = section.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
-      img.style.transform = `translate(${dx * 14}px, ${dy * 10}px) rotate(${dx * 1.5}deg)`;
-    });
-    section.addEventListener('mouseleave', () => {
-      img.style.transform = '';
-    });
-  }
-
-  // Scroll parallax on image
-  const imgWrap = document.getElementById('yt-img-wrap');
-  if(imgWrap) {
-    window.addEventListener('scroll', () => {
-      const rect = imgWrap.getBoundingClientRect();
-      const center = rect.top + rect.height / 2 - window.innerHeight / 2;
-      imgWrap.style.transform = `translateY(${center * 0.07}px)`;
-    }, { passive: true });
-  }
-
-  // Subtle red particle background
-  const canvas = document.getElementById('yt-particles');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, pts = [];
-
-  function resize() {
-    W = canvas.width = section.offsetWidth;
-    H = canvas.height = section.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  for(let i = 0; i < 55; i++) {
-    pts.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * 800,
-      r: Math.random() * 1.2 + 0.3,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.15,
-      o: Math.random() * 0.25 + 0.05,
-      red: Math.random() > 0.6,
-    });
-  }
-
-  let rafId;
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    pts.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if(p.x < 0) p.x = W; if(p.x > W) p.x = 0;
-      if(p.y < 0) p.y = H; if(p.y > H) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.red
-        ? `rgba(232,0,13,${p.o})`
-        : `rgba(255,255,255,${p.o * 0.6})`;
-      ctx.fill();
-    });
-    rafId = requestAnimationFrame(draw);
-  }
-
-  // Only animate when section is visible
-  const sectObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) { draw(); }
-      else { cancelAnimationFrame(rafId); }
-    });
-  }, { threshold: 0.01 });
-  sectObs.observe(section);
-})();
-
-
 // ── DEDICATED PLATFORM SECTION ANIMATIONS ──────────────────────
 (function(){
   const sections = [
@@ -4714,7 +4430,7 @@ document.querySelectorAll('.img-blend').forEach((img, i) => {
     { x:0.5,  y:0.12, label:'Content Hub', sub:'Central System' },
     { x:0.85, y:0.25, label:'Facebook', sub:'Trust Community' },
     { x:0.15, y:0.75, label:'Affiliate', sub:'Commission Layer' },
-    { x:0.5,  y:0.88, label:'YouTube', sub:'Faceless Channel' },
+    { x:0.5,  y:0.88, label:'Page Method', sub:'Facebook Page Income' },
     { x:0.85, y:0.75, label:'Income', sub:'Compounding Result' },
   ];
 
@@ -4850,7 +4566,7 @@ document.querySelectorAll('.img-blend').forEach((img, i) => {
 (function(){
 
   // Reveal on scroll
-  const cards = ['lp-card-pin','lp-card-fb','lp-card-yt'];
+  const cards = ['lp-card-pin','lp-card-fb','lp-card-pm'];
   const lpObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(e.isIntersecting){
@@ -4981,54 +4697,59 @@ document.querySelectorAll('.img-blend').forEach((img, i) => {
     draw();
   })();
 
-  // ── YOUTUBE CANVAS: play button pulse + waveform ──
+  // ── PAGE METHOD CANVAS: pulsing rings + star with 5 orbiting income dots ──
   (function(){
-    const c = document.getElementById('lp-canvas-yt');
+    const c = document.getElementById('lp-canvas-pm');
     if(!c) return;
     const ctx = c.getContext('2d');
     let W,H,t=0;
     function resize(){ W=c.width=c.offsetWidth; H=c.height=c.offsetHeight; }
     resize(); window.addEventListener('resize',resize);
 
+    function star(cx,cy,R,r){
+      ctx.beginPath();
+      for(let i=0;i<10;i++){
+        const ang = -Math.PI/2 + i*Math.PI/5;
+        const rad = i%2===0 ? R : r;
+        const x = cx + Math.cos(ang)*rad, y = cy + Math.sin(ang)*rad;
+        i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      }
+      ctx.closePath();
+    }
+
     function draw(){
       t+=0.03;
       ctx.clearRect(0,0,W,H);
       const cx=W/2, cy=H/2;
 
-      // pulsing rings
       for(let i=0;i<3;i++){
         const phase = (t*0.5 + i*0.7) % 2;
         const r = 20 + phase*35;
         const op = Math.max(0, 0.4*(1-phase/2));
         ctx.beginPath();
         ctx.arc(cx,cy,r,0,Math.PI*2);
-        ctx.strokeStyle=`rgba(232,0,13,${op})`;
+        ctx.strokeStyle='rgba(232,0,13,'+op+')';
         ctx.lineWidth=1;
         ctx.stroke();
       }
 
-      // play button
-      ctx.beginPath();
-      ctx.arc(cx,cy,22,0,Math.PI*2);
-      ctx.fillStyle='rgba(232,0,13,0.9)';
-      ctx.fill();
-      ctx.beginPath();
-      ctx.moveTo(cx-6,cy-10);
-      ctx.lineTo(cx-6,cy+10);
-      ctx.lineTo(cx+10,cy);
-      ctx.closePath();
-      ctx.fillStyle='#fff';
-      ctx.fill();
-
-      // waveform bars below
-      const barCount=16;
-      const barW = W*0.5/barCount;
-      const startX = cx - W*0.25;
-      for(let i=0;i<barCount;i++){
-        const h = 4 + Math.abs(Math.sin(t*3+i*0.5))*14;
-        ctx.fillStyle=`rgba(232,0,13,${0.3+0.3*Math.abs(Math.sin(t*3+i*0.5))})`;
-        ctx.fillRect(startX+i*barW, cy+40-h/2, barW*0.6, h);
+      // five orbiting dots = five income routes
+      for(let i=0;i<5;i++){
+        const ang = t*0.6 + i*(Math.PI*2/5);
+        const ox = cx + Math.cos(ang)*46, oy = cy + Math.sin(ang)*30;
+        ctx.beginPath();
+        ctx.arc(ox,oy,2.4,0,Math.PI*2);
+        ctx.fillStyle='rgba(255,255,255,0.7)';
+        ctx.fill();
       }
+
+      star(cx,cy,17,7.5);
+      ctx.fillStyle='rgba(232,0,13,0.95)';
+      ctx.shadowColor='rgba(232,0,13,0.7)';
+      ctx.shadowBlur=14;
+      ctx.fill();
+      ctx.shadowBlur=0;
+
       requestAnimationFrame(draw);
     }
     draw();
