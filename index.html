@@ -2097,6 +2097,17 @@ html{overflow-x:hidden;max-width:100%}body{max-width:100%;overflow-x:clip}.lg-gl
 .fc-card .fc-label{color:#ffffff!important}
 .fc-card .fc-name,.fc-card .founder-name{color:#ffffff!important}
 .fc-card .fc-bio,.fc-card .founder-bio{color:#c4c4c4!important}
+/* PREMIUM FOUNDER CARD */
+.fc-card.founder-card{position:relative;background:linear-gradient(155deg,#323232 0%,#242424 45%,#1a1a1a 100%)!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:20px!important;padding:34px 38px 36px!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(0,0,0,.5),0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(232,0,13,.08)!important;overflow:hidden;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.fc-card.founder-card:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(0,0,0,.5),0 40px 90px rgba(0,0,0,.65),0 0 80px rgba(232,0,13,.16)!important}
+.fc-card.founder-card::before{content:""!important;display:block!important;position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,#E8000D,rgba(232,0,13,0))!important;opacity:1!important}
+.fc-card.founder-card::after{content:""!important;display:block!important;position:absolute;top:-60%;right:-20%;width:70%;height:140%;background:radial-gradient(closest-side,rgba(255,255,255,.07),transparent 70%);pointer-events:none}
+.fc-card .fc-label{display:inline-flex;align-items:center;gap:10px;font-size:10.5px!important;letter-spacing:.28em!important;font-weight:700!important}
+.fc-card .fc-label::before{content:"";width:22px;height:1px;background:#E8000D}
+.fc-card .fc-name{font-size:clamp(26px,3.4vw,34px)!important;letter-spacing:-.02em!important;margin:12px 0 14px!important}
+.fc-card .fc-bio{font-size:15.5px!important;line-height:1.85!important;color:#bdbdbd!important;max-width:520px}
+.fc-photo{box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 0 6px rgba(232,0,13,.18),0 12px 40px rgba(0,0,0,.6)!important}
+@media(max-width:768px){.fc-card.founder-card{padding:26px 24px 28px!important}}
 </style>
 </head>
 <body>
